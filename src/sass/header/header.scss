@@ -1,0 +1,52 @@
+.header {
+    &__wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__nav {
+        ul {
+            display: flex;
+            justify-content: space-evenly;
+            width: 313;
+            height: 27;
+            gap: 50px;
+
+            li {
+                a {
+                    font-family: Lato;
+                    font-weight: 400;
+                    font-style: Regular;
+                    font-size: 21px;
+                    line-height: 130%;
+
+
+                }
+            }
+        }
+    }
+
+    &__cart {
+        width: 181px;
+        height: 27px;
+
+        &-link {
+            display: flex;
+            justify-content: space-evenly;
+        }
+    }
+
+    &logo {
+        &-text {
+            font-family: Lato;
+            font-weight: 900;
+            font-style: Black;
+            font-size: 36px;
+            line-height: 130%;
+            text-align: center;
+            text-transform: uppercase;
+
+        }
+    }
+}
