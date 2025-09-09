@@ -1,0 +1,66 @@
+@use "../basic/variables" as *;
+
+.black {
+    background-color: $dark;
+
+    &__wrapper {
+        display: flex;
+        gap: 150px;
+        margin-top: 150px;
+        margin-bottom: 150px;
+    }
+
+    &__left {
+        width: 330px;
+        height: 270px;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        color: $light;
+
+        &-header {
+            font-weight: 900;
+            font-style: Black;
+            font-size: 48px;
+
+        }
+
+        &-text {
+            font-weight: 400;
+            font-style: Regular;
+            font-size: 21px;
+            line-height: 140%;
+            color: $light;
+        }
+    }
+
+    &__img {
+        &-item {
+            width: 278px;
+            height: 251px;
+            object-fit: cover;
+            transform: rotate(-12deg);
+        }
+    }
+
+    &__right {
+        width: 382px;
+        height: 347px;
+
+        &-header {
+            font-weight: 900;
+            font-size: 36px;
+            line-height: 130%;
+            color: $light;
+        }
+
+
+        &-text {
+            font-weight: 400;
+            font-size: 21px;
+            line-height: 140%;
+            letter-spacing: 0%;
+            color: $light;
+        }
+    }
+}

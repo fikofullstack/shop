@@ -1,5 +1,7 @@
 @use "./header/header.scss";
 @use "./head1/head1.scss";
+@use "./popular/popular.scss";
+@use "./black/black.scss";
 
 * {
 	box-sizing: border-box;
@@ -49,8 +51,8 @@ img {
 	max-inline-size: 100%;
 }
 
-html {
-
+html {	
+	
 	scroll-behavior: smooth;
 }
 

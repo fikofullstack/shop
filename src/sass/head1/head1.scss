@@ -82,11 +82,26 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%) rotate(-90deg) translateY(-60%);
+        transform: translate(-50%, -50%) rotate(-90deg) translateY(-40%);
         width: 466px;
-        height: 553px;
+        height: 653px;
         color: white;
 
+    }
+    &__pagination{
+        position: absolute;
+        
+        
+        transform: translateY(100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+    &__slide{
+        width: 504px;
+        height: 489px;
+        
     }
 }
 
@@ -108,11 +123,11 @@
 
 }
 .swiper-pagination-bullet {
-  background: rgba(253, 251, 249, 1); /* цвет обычной */
+  background: rgba(253, 251, 249, 1); 
   opacity: 0.7;
 }
 
 .swiper-pagination-bullet-active {
-  background: rgba(253, 251, 249, 1); /* цвет активной */
+  background: rgba(253, 251, 249, 1);
   opacity: 1;
 }
