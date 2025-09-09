@@ -1,0 +1,118 @@
+@use "../basic/variables.scss" as *;
+
+.head1 {
+    display: flex;
+
+    // &__wrapper {
+    //     display: flex;
+    //     width: 100%;
+    // }
+    &__info {
+        display: flex;
+        justify-content: center;
+
+        flex-direction: column;
+        width: 440px;
+        height: 378px;
+        gap: 45px;
+
+        &-cntr {
+            width: 440px;
+            height: 273px;
+            gap: 30px;
+
+        }
+    }
+
+    &__left {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 751px;
+        width: 55vw;
+        background-color: $beige;
+    }
+
+    &__right {
+        position: relative;
+        height: 751px;
+        width: 45vw;
+        background-color: $dark;
+    }
+
+    &__text {
+        &-info {
+            width: 440px;
+            height: 87px;
+            font-weight: 400;
+            font-size: 21px;
+            line-height: 140%;
+            color: $dark;
+        }
+
+        &-header {
+            font-weight: 900;
+            font-style: Black;
+            font-size: 60px;
+            line-height: 130%;
+            color: $dark;
+            width: 440px;
+            height: 156px;
+        }
+
+        &-link {
+            width: 253px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 100px;
+            background: $dark;
+            color: rgba(253, 251, 249, 1);
+        }
+    }
+
+    &__img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    &__slider {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-90deg) translateY(-60%);
+        width: 466px;
+        height: 553px;
+        color: white;
+
+    }
+}
+
+
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    width: 404px;
+    height: 389px;
+    transform: rotate(-260deg);
+
+}
+.swiper-pagination-bullet {
+  background: rgba(253, 251, 249, 1); /* цвет обычной */
+  opacity: 0.7;
+}
+
+.swiper-pagination-bullet-active {
+  background: rgba(253, 251, 249, 1); /* цвет активной */
+  opacity: 1;
+}

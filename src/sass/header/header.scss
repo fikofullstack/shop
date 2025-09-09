@@ -1,3 +1,5 @@
+@use "../basic/variables.scss" as *;
+
 .header {
     &__wrapper {
         display: flex;
@@ -6,6 +8,11 @@
     }
 
     &__nav {
+        &-link {
+
+            color: $dark;
+        }
+
         ul {
             display: flex;
             justify-content: space-evenly;
@@ -15,9 +22,7 @@
 
             li {
                 a {
-                    font-family: Lato;
                     font-weight: 400;
-                    font-style: Regular;
                     font-size: 21px;
                     line-height: 130%;
 
@@ -37,16 +42,14 @@
         }
     }
 
-    &logo {
+    &__logo {
         &-text {
-            font-family: Lato;
             font-weight: 900;
-            font-style: Black;
-            font-size: 36px;
+            font-size: 32px;
             line-height: 130%;
             text-align: center;
             text-transform: uppercase;
-
+            transform: translateX(-35px);
         }
     }
 }

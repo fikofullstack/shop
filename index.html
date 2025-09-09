@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Store</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 
 <body>
@@ -14,7 +15,7 @@
                 <nav class="header__nav">
                     <ul class="header__nav-list">
                         <li class="header__nav-item">
-                            <a href="#" class="header__nav-link">Shop</a>   
+                            <a href="#" class="header__nav-link">Shop</a>
                         </li>
                         <li class="header__nav-item">
                             <a href="#" class="header__nav-link">About Us</a>
@@ -36,7 +37,38 @@
             </div>
         </div>
     </header>
+    <section class="head1">
+        <div class="head1__left">
+            <div class="head1__info">
+                <div class="head1__info-cntr">
+                    <h2 class="head1__text-header">
+                        Soft plaids for your comfort
+                    </h2>
+                    <p class="head1__text-info">Throw a blanket over your shoulders or place it on the arm of the sofa,
+                        and the atmosphere in the house will be warmer.</p>
+                </div>
+                <a href="#" class="head1__text-link">Shop now</a>
+            </div>
+        </div>
+        <div class="head1__right">
+            <img src="/src/img/head1/bg_head.png" alt="bg_head1" class="head1__img">
+            <div class="swiper mySwiper head1__slider">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide head1__slide">
+                        <img src="/src/img/head1/head_slider.png" alt="slider1" class="head1__slider-img">
+                    </div>
+                    <div class="swiper-slide head1__slide">Slide 2</div>
+                    <div class="swiper-slide head1__slide">Slide 3</div>
+
+                    
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
 
     <script type="module" src="/src/js/mian.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </body>
+
 </html>

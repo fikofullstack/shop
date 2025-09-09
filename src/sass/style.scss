@@ -1,8 +1,15 @@
 @use "./header/header.scss";
+@use "./head1/head1.scss";
 
 * {
 	box-sizing: border-box;
+	@font-face {
+  font-family: "Lato";
+  src: url("../../fonts/Lato-Regular.ttf") format("woff2");
+  }
+
 }
+
 h1,
 h2,
 h3,
@@ -12,15 +19,16 @@ figure,
 p,
 ol,
 ul {
-    list-style-type: none;
-    margin: 0;
+	list-style-type: none;
+	margin: 0;
 	padding: 0;
+}
 
+a {
+	text-decoration: none;
 }
-a{
-    text-decoration: none;
-}
-0l[role="list"],
+
+ol[role="list"],
 ul[role="list"] {
 	list-style: none;
 	padding-inline: 0;
@@ -42,14 +50,14 @@ img {
 }
 
 html {
-	font-family: "Lato", sans-serif
+
 	scroll-behavior: smooth;
 }
+
 body {
 	margin: 0;
 	padding: 0;
 }
-
 
 .container {
 	width: 100%;
@@ -57,7 +65,10 @@ body {
 	position: relative;
 }
 
-
-
-
-
+@font-face {
+	font-family: 'MyCustomFont';
+	src: url('/fonts/Lato-Regular.ttf') format('ttf'),
+		url('/fonts/Lato-Regular.ttf') format('ttf'), ;
+	font-weight: normal;
+	font-style: normal;
+}
