@@ -2,13 +2,21 @@
 @use "./head1/head1.scss";
 @use "./popular/popular.scss";
 @use "./black/black.scss";
+@use "./instagram/instagram.scss";
+@use "./subscription/subscription.scss";
+@use "./footer/footer.scss";
+
+@use "./header/header1200.scss";
 
 * {
 	box-sizing: border-box;
+
+	font-family: "Lato", sans-serif;
+
 	@font-face {
-  font-family: "Lato";
-  src: url("../../fonts/Lato-Regular.ttf") format("woff2");
-  }
+		font-family: "Lato";
+		src: url("../../fonts/Lato-Regular.ttf") format("woff2");
+	}
 
 }
 
@@ -51,8 +59,8 @@ img {
 	max-inline-size: 100%;
 }
 
-html {	
-	
+html {
+
 	scroll-behavior: smooth;
 }
 
@@ -63,14 +71,15 @@ body {
 
 .container {
 	width: 100%;
+	height: 100%;
 	padding: 30px 351px;
 	position: relative;
 }
 
-@font-face {
-	font-family: 'MyCustomFont';
-	src: url('/fonts/Lato-Regular.ttf') format('ttf'),
-		url('/fonts/Lato-Regular.ttf') format('ttf'), ;
-	font-weight: normal;
-	font-style: normal;
-}
+// @font-face {
+// 	font-family: 'MyCustomFont';
+// 	src: url('/fonts/Lato-Regular.ttf') format('ttf'),
+// 		url('/fonts/Lato-Regular.ttf') format('ttf'), ;
+// 	font-weight: normal;
+// 	font-style: normal;
+// }

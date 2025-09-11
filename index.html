@@ -9,9 +9,28 @@
 </head>
 
 <body>
+    <div class="header__menu-overlay" id="header-menu-overlay"></div>
     <header class="header">
         <div class="container">
             <div class="header__wrapper">
+                <div class="header__menu" id="header-menu">
+                    <button class="header__menu-close" id="header-menu-close" aria-label="Close menu">&times;</button>
+                    <ul class="header__menu-list">
+                        <li class="header__menu-item"><a href="#" class="header__menu-link">Shop</a></li>
+                        <li class="header__menu-item"><a href="#" class="header__menu-link">About us</a></li>
+                        <li class="header__menu-item"><a href="#" class="header__menu-link">Contacts</a></li>
+                    </ul>
+                    <div class="header__menu-bottom">
+                        <input type="text" class="header__menu-search" placeholder="Search">
+                        <span class="header__menu-cart">Cart (4)</span>
+                    </div>
+                </div>
+                <div class="header__burger">
+                    <span class="header__burger-line"></span>
+                    <span class="header__burger-line2"></span>
+                    <span class="header__burger-line"></span>
+
+                </div>
                 <nav class="header__nav">
                     <ul class="header__nav-list">
                         <li class="header__nav-item">
@@ -110,36 +129,9 @@
                             <p class="price">€85</p>
                         </div>
                     </div>
-                    <div class="pp-slide">
-                        <div class="card info-cards3">
-                            <img class="srch" src="img/blanket_grabcut.png" alt="Rovror blanket">
-                        </div>
-                        <div class="meta">
-                            <h3 class="name">Rovror</h3>
-                            <p class="size">150×200 cm</p>
-                            <p class="price">€85</p>
-                        </div>
-                    </div>
-                    <div class="pp-slide">
-                        <div class="card info-cards3">
-                            <img class="srch" src="img/blanket_grabcut.png" alt="Rovror blanket">
-                        </div>
-                        <div class="meta">
-                            <h3 class="name">Rovror</h3>
-                            <p class="size">150×200 cm</p>
-                            <p class="price">€85</p>
-                        </div>
-                    </div>
-                    <div class="pp-slide">
-                        <div class="card info-cards3">
-                            <img class="srch" src="img/blanket_grabcut.png" alt="Rovror blanket">
-                        </div>
-                        <div class="meta">
-                            <h3 class="name">Rovror</h3>
-                            <p class="size">150×200 cm</p>
-                            <p class="price">€85</p>
-                        </div>
-                    </div>
+
+
+
 
                 </div>
                 <!-- /SLIDER TRACK -->
@@ -200,10 +192,84 @@
                 <h3 class="instagram__header">
                     Follow us on instagram
                 </h3>
-                
+                <div class="instagram__images">
+                    <div class="instagram__images-divan">
+                        <img src="./src/img/instagram/divan.png" alt="divan" class="instagram__divan">
+                        <p class="instagram__divan-text">
+                            On our Instagram, we regularly share the most interesting news. We also tell you about all
+                            our new products.
+                        </p>
+                    </div>
+                    <div class="instagram__images-krovat">
+                        <img src="./src/img/instagram/krovat.png" alt="krovat" class="instagram__krovat">
+                        <a href="" class="instagram__krovat-link">@warm.heart</a>
+                    </div>
+                    <div class="instagram__images-kovor">
+                        <img src="./src/img/instagram/kovor.png" alt="kovor" class="instagram__kovor">
+                        <a href="" class="instagram__kovor-link">@warm.heart</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
+    <section class="subscription">
+        <div class="container">
+            <div class="subscription__wrapper">
+                <div class="subscription__info">
+                    <h3 class="subscription__header">Get 20% off your first purchase</h3>
+                    <p class="subscription__text">Subscribe to our newsletter and get a promo code for a 20% discount!
+                        You will receive only the most important and relevant news.
+                    </p>
+                </div>
+                <form action="#" class="subscription__form">
+                    <input type="email" class="subscription__input" placeholder="Enter your email">
+                    <button type="submit" class="subscription__button">Submit</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__wrapper">
+                <div class="footer__left">
+                    <h3 class="footer__left-header">warm heart</h3>
+                    <div class="footer__left-icons">
+                        <img src="./src/img/footer/instagram-svgrepo-com.svg" alt="instagram" class="footer__insta svg">
+                        <img src="./src/img/footer/facebook-svgrepo-com.svg" alt="facebook"
+                            class="footer__facebook svg">
+                        <img src="./src/img/footer/twitter-3-svgrepo-com.svg" alt="twitter" class="footer__twitter svg">
+                    </div>
+                    <div class="footer__policy">
+                        <p class="footer__policy-text">
+                            © WARM HEART 2025 <br> <br> <br>
+                            Privacy policy
+                        </p>
+                    </div>
+                </div>
+                <ul class="footer__info">
+                    <h3 class="footer__info-header">Info</h3>
+                    <li class="footer__info-item">About Us</li>
+                    <li class="footer__info-item">Contact</li>
+                    <li class="footer__info-item">Shop</li>
+                    <li class="footer__info-item">FAQ</li>
+                </ul>
+                <ul class="footer__customer">
+                    <h3 class="footer__customer-header">Customer service</h3>
+                    <li class="footer__customer-item">Delivery and pickup</li>
+                    <li class="footer__customer-item">Payment</li>
+                    <li class="footer__customer-item">Exchange and return</li>
+                    <li class="footer__customer-item">Help</li>
+                </ul>
+                <ul class="footer__useful">
+                    <h3 class="footer__useful-header">Customer service</h3>
+                    <li class="footer__useful-item">Suppliers</li>
+                    <li class="footer__useful-item">Press service</li>
+                    <li class="footer__useful-item">Buying guides</li>
+                    <li class="footer__useful-item">Principle of operation</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
     <script type="module" src="/src/js/mian.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </body>

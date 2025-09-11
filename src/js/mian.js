@@ -89,3 +89,32 @@ import '../sass/style.scss';
   currentIndex = 0;
   updateDots();
 })();
+
+
+
+
+// ________________________________________________________________________________
+
+// Добавьте в mian.js или отдельный файл
+document.addEventListener('DOMContentLoaded', () => {
+  const burger = document.querySelector('.header__burger');
+  const menu = document.getElementById('header-menu');
+  const close = document.getElementById('header-menu-close');
+  const overlay = document.getElementById('header-menu-overlay');
+
+  function openMenu() {
+    menu.classList.add('header__menu--active');
+    overlay.classList.add('header__menu-overlay--active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    menu.classList.remove('header__menu--active');
+    overlay.classList.remove('header__menu-overlay--active');
+    document.body.style.overflow = '';
+  }
+
+  burger.addEventListener('click', openMenu);
+  close.addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu);
+});

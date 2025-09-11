@@ -1,0 +1,125 @@
+@use "../basic/variables.scss" as *;
+
+.header__menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 340px;
+    height: 100vh;
+    background: #fff;
+    box-shadow: -2px 0 16px rgba(0, 0, 0, 0.08);
+    z-index: 1000;
+    transform: translateX(100%);
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    padding: 32px 24px;
+
+    .header__menu-close {
+        background: none;
+        border: none;
+        font-size: 32px;
+        align-self: flex-end;
+        cursor: pointer;
+        margin-bottom: 32px;
+    }
+
+    &-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 32px 0;
+        flex: 1 1 auto;
+
+        .header__menu-item {
+            margin-bottom: 24px;
+
+            .header__menu-link {
+                color: #222;
+                font-size: 20px;
+                text-decoration: none;
+            }
+        }
+    }
+
+    &-bottom {
+        border-top: 1px solid #ccc;
+        padding-top: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        .header__menu-search {
+            border: none;
+            border-bottom: 2px solid #222;
+            padding: 8px 0;
+            font-size: 16px;
+            color: #888;
+            outline: none;
+            background: transparent;
+        }
+
+        .header__menu-cart {
+            font-size: 18px;
+            color: #222;
+        }
+    }
+}
+
+.header__menu--active {
+    transform: translateX(0);
+}
+
+.header__menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.32);
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.header__menu-overlay--active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.header__menu {
+  left: 0; // Меняем на left
+  right: auto;
+  transform: translateX(-100%); // Меняем направление
+  // ...остальной код без изменений...
+}
+
+.header__menu--active {
+  transform: translateX(0);
+}
+
+.header {
+    &__burger {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        width: 40px;
+        height: 20px;
+
+        &-line {
+            display: block;
+            width: 40px;
+            height: 1px;
+            background-color: $dark;
+
+        }
+        &-line2 {
+            display: block;
+            width: 30px;
+            height: 1px;
+            background-color: $dark;
+
+        }
+    }
+
+    .header__nav {
+        display: none;
+    }
+}

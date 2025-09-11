@@ -1,0 +1,60 @@
+@use "../basic/variables.scss" as *;
+.subscription {
+    background-color: rgba(247, 237, 228, 1);
+
+    &__wrapper {
+        height: 422px;
+        display: flex;
+        align-items: center;
+        gap: 60px;
+    }
+
+    &__info {
+        width: 667px;
+    }
+
+    &__header {
+        font-weight: 900;
+        font-size: 48px;
+        line-height: 130%;
+    }
+
+    &__text {
+        font-weight: 400;
+        font-size: 21px;
+        line-height: 140%;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        width: 490px;
+        height: 150px;
+        margin-top: 20px;
+    }
+
+    &__button {
+        width: 166px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+        border-radius: 100px;
+        background-color: black;
+        color: $light;
+    }
+    &__input {
+        background: none;
+        width: 490px;
+        height: 60px;
+        padding: 20px 30px;
+        border: none;
+        border-bottom: 5px solid rgb(0, 0, 0);
+        outline: none;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 140%;
+    }
+}

@@ -1,0 +1,85 @@
+@use "../basic/variables" as *;
+
+.svg {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #fff;
+    font-size: 16px;
+}
+
+.footer {
+    height: 545px;
+    background-color: $dark;
+
+    &__wrapper {
+        display: flex;
+        gap: 160px;
+        margin-top: 150px;
+    }
+
+    &__left {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+
+        &-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        &-header {
+            display: block;
+            width: 260px;
+            height: 47px;
+            font-weight: 900;
+            font-style: Black;
+            font-size: 36px;
+            line-height: 130%;
+            text-align: center;
+            text-transform: uppercase;
+            color: $light;
+
+        }
+    }
+
+    &__policy {
+        font-weight: 400;
+        font-size: 17px;
+        line-height: 130%;
+        color: $light;
+    }
+
+
+    &__info,
+    &__customer,
+    &__useful {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        &-header {
+            font-weight: 700;
+            font-style: Bold;
+            font-size: 24px;
+            line-height: 140%;
+            color: $light;
+
+        }
+
+        &-item,
+        &-customer,
+        &-useful {
+            font-weight: 400;
+            font-size: 17px;
+            line-height: 130%;
+            cursor: pointer;
+            color: $light;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+}

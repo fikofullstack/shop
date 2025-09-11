@@ -1,5 +1,76 @@
 @use "../basic/variables.scss" as *;
 
 .instagram {
-    
+    margin-top: 130px;
+
+    &__header {
+        display: block;
+        width: 492px;
+        height: 62px;
+        color: $dark;
+        font-weight: 900;
+        font-size: 48px;
+        line-height: 130%;
+        margin-bottom: 60px;
+    }
+
+    &__images {
+        display: flex;
+        gap: 30px;
+        width: 1218px;
+        height: 615px;
+        border-radius: 25px;
+
+        &-divan {
+            display: block;
+            width: 386px;
+            height: 493px;
+            border-radius: 30%;
+        }
+    }
+
+    &__divan {
+        width: 386px;
+        height: 386px;
+        border-radius: 25px;
+
+        &-text {
+            margin-top: 20px;
+            font-weight: 400;
+            font-size: 21px;
+            line-height: 140%;
+        }
+    }
+
+    &__krovat {
+        width: 490px;
+        height: 490px;
+        border-radius: 25px;
+
+        &-link {
+            display: none;
+            width: 211px;
+            height: 50px;
+            font-weight: 400;
+            font-size: 36px;
+            line-height: 140%;
+            color: rgba(44, 44, 44, 1);
+
+        }
+    }
+
+    &__kovor {
+        width: 282px;
+        height: 282px;
+        border-radius: 25px;
+         &-link {
+            display: block;
+            width: 211px;
+            height: 50px;
+            font-weight: 400;
+            font-size: 36px;
+            line-height: 140%;
+            color: rgba(44, 44, 44, 1);
+        }
+    }
 }
