@@ -83,3 +83,27 @@
     }
 
 }
+
+@media screen and (max-width: 1500px) {
+    .footer {
+        &__wrapper {
+            gap: 50px;
+        }
+
+        &__left {
+            align-items: center;
+            text-align: center;
+
+            &-header {
+                font-size: 30px;
+            }
+        }
+
+        &__useful {
+            &-header {
+                width: 185px;
+            }
+        }
+    }
+
+}

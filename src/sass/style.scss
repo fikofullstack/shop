@@ -7,10 +7,10 @@
 @use "./footer/footer.scss";
 
 @use "./header/header1200.scss";
+@use "./head1/head1200.scss";
 
 * {
 	box-sizing: border-box;
-
 	font-family: "Lato", sans-serif;
 
 	@font-face {
@@ -74,6 +74,20 @@ body {
 	height: 100%;
 	padding: 30px 351px;
 	position: relative;
+
+
+}
+@media (max-width: 1725px) {
+.container {
+		padding-inline: 120px;
+	}
+}
+
+
+@media (max-width: 1500px) {
+	.container {
+		padding: 20px;
+	}
 }
 
 // @font-face {

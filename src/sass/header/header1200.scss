@@ -1,5 +1,6 @@
 @use "../basic/variables.scss" as *;
 
+
 .header__menu {
     position: fixed;
     top: 0;
@@ -70,29 +71,29 @@
 }
 
 .header__menu-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.32);
-  z-index: 999;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.32);
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
 }
 
 .header__menu-overlay--active {
-  opacity: 1;
-  pointer-events: auto;
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .header__menu {
-  left: 0; // Меняем на left
-  right: auto;
-  transform: translateX(-100%); // Меняем направление
-  // ...остальной код без изменений...
+    left: 0; // Меняем на left
+    right: auto;
+    transform: translateX(-100%); // Меняем направление
+    // ...остальной код без изменений...
 }
 
 .header__menu--active {
-  transform: translateX(0);
+    transform: translateX(0);
 }
 
 .header {
@@ -110,6 +111,7 @@
             background-color: $dark;
 
         }
+
         &-line2 {
             display: block;
             width: 30px;
@@ -119,7 +121,35 @@
         }
     }
 
+    
+}
+
+.header__burger {
+    display: none;
+}
+
+.header__nav {
+    display: flex;
+}
+
+@media (max-width: 1500px) {
+    .header__burger {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        width: 40px;
+        height: 20px;
+    }
+    .header {
+        &__logo{
+            &-text{
+                transform: translateX(0px);
+            }
+        }
+    }
+
     .header__nav {
         display: none;
     }
+    
 }

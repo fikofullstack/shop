@@ -69,6 +69,7 @@
             border-radius: 100px;
             background: $dark;
             color: rgba(253, 251, 249, 1);
+            font-size: 21px;
         }
     }
 
@@ -90,8 +91,6 @@
     }
     &__pagination{
         position: absolute;
-        
-        
         transform: translateY(100%);
         display: flex;
         justify-content: center;
