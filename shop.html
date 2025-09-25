@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+</head>
+
+<body>
+    <div class="header__menu-overlay" id="header-menu-overlay"></div>
+    <header class="header">
+        <div class="container">
+            <div class="header__wrapper">
+                <div class="header__menu" id="header-menu">
+                    <button class="header__menu-close" id="header-menu-close" aria-label="Close menu">&times;</button>
+                    <ul class="header__menu-list">
+                        <li class="header__menu-item"><a href="#" class="header__menu-link">Shop</a></li>
+                        <li class="header__menu-item"><a href="#" class="header__menu-link">About us</a></li>
+                        <li class="header__menu-item"><a href="#" class="header__menu-link">Contacts</a></li>
+                    </ul>
+                    <div class="header__menu-bottom">
+                        <input type="text" class="header__menu-search" placeholder="Search">
+                        <span class="header__menu-cart">Cart (4)</span>
+                    </div>
+                </div>
+                <div class="header__burger">
+                    <span class="header__burger-line"></span>
+                    <span class="header__burger-line2"></span>
+                    <span class="header__burger-line"></span>
+
+                </div>
+                <nav class="header__nav">
+                    <ul class="header__nav-list">
+                        <li class="header__nav-item">
+                            <a href="/shop.html" class="header__nav-link">Shop</a>
+                        </li>
+                        <li class="header__nav-item">
+                            <a href="#" class="header__nav-link">About Us</a>
+                        </li>
+                        <li class="header__nav-item">
+                            <a href="#" class="header__nav-link">Contacts</a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="header__logo">
+                    <h1 class="header__logo-text">warm heart</h1>
+                    <h1 class="header__logo-text header__logo-text1">WH</h1>
+                </div>
+                <div class="header__cart">
+                    <div class="header__cart-link">
+                        <span class="header__cart-text">Search</span>
+                        <span class="header__cart-text">Cart (4)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="head1">
+        <div class="container">
+            <div class="head1__wrapper">
+                <div class="head1__up">
+                    <h3 class="head1__header">
+                        Shop
+                    </h3>
+                    <p class="head1__text">
+                        In our store you will find a large number of high-quality blankets that will help make your home
+                        more comfortable and warm your life.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+<section class="head2">
+  <div class="container">
+    <div class="head2__wrapper">
+      <div class="filters">
+        <!-- Size -->
+        <div class="dropdown" data-group="Size" id="dropdown-size">
+          <button type="button" class="dropdown-button" aria-expanded="false" aria-haspopup="listbox">
+            <span class="label-text">Size</span>
+            <span class="arrow" aria-hidden="true">▼</span>
+          </button>
+          <div class="dropdown-list" role="listbox" aria-label="Size options">
+            <label><input class="filter" data-group="Size" data-value="S" type="checkbox" value="S"> Small</label>
+            <label><input class="filter" data-group="Size" data-value="M" type="checkbox" value="M"> Medium</label>
+            <label><input class="filter" data-group="Size" data-value="L" type="checkbox" value="L"> Large</label>
+            <label><input class="filter" data-group="Size" data-value="XL" type="checkbox" value="XL"> Extra Large</label>
+          </div>
+        </div>
+
+        <!-- Color -->
+        <div class="dropdown" data-group="Color" id="dropdown-color">
+          <button type="button" class="dropdown-button" aria-expanded="false" aria-haspopup="listbox">
+            <span class="label-text">Color</span>
+            <span class="arrow" aria-hidden="true">▼</span>
+          </button>
+          <div class="dropdown-list" role="listbox" aria-label="Color options">
+            <label><input class="filter" data-group="Color" data-value="Red" type="checkbox" value="red"> Red</label>
+            <label><input class="filter" data-group="Color" data-value="Blue" type="checkbox" value="blue"> Blue</label>
+            <label><input class="filter" data-group="Color" data-value="Green" type="checkbox" value="green"> Green</label>
+            <label><input class="filter" data-group="Color" data-value="Black" type="checkbox" value="black"> Black</label>
+          </div>
+        </div>
+
+        <!-- Material -->
+        <div class="dropdown" data-group="Material" id="dropdown-material">
+          <button type="button" class="dropdown-button" aria-expanded="false" aria-haspopup="listbox">
+            <span class="label-text">Material</span>
+            <span class="arrow" aria-hidden="true">▼</span>
+          </button>
+          <div class="dropdown-list" role="listbox" aria-label="Material options">
+            <label><input class="filter" data-group="Material" data-value="Cotton" type="checkbox" value="cotton"> Cotton</label>
+            <label><input class="filter" data-group="Material" data-value="Wool" type="checkbox" value="wool"> Wool</label>
+            <label><input class="filter" data-group="Material" data-value="Leather" type="checkbox" value="leather"> Leather</label>
+            <label><input class="filter" data-group="Material" data-value="Polyester" type="checkbox" value="polyester"> Polyester</label>
+          </div>
+        </div>
+
+        <!-- Price -->
+        <div class="dropdown" data-group="Price" id="dropdown-price">
+          <button type="button" class="dropdown-button" aria-expanded="false" aria-haspopup="listbox">
+            <span class="label-text">Price</span>
+            <span class="arrow" aria-hidden="true">▼</span>
+          </button>
+          <div class="dropdown-list" role="listbox" aria-label="Price options">
+            <label><input class="filter" data-group="Price" data-value="0-50" type="checkbox" value="0-50">$0 - $50</label>
+            <label><input class="filter" data-group="Price" data-value="50-100" type="checkbox" value="50-100">$50 - $100</label>
+            <label><input class="filter" data-group="Price" data-value="100-200" type="checkbox" value="100-200">$100 - $200</label>
+            <label><input class="filter" data-group="Price" data-value="200+" type="checkbox" value="200+">$200+</label>
+          </div>
+        </div>
+
+        <!-- Выбранные фильтры (чипы) -->
+        <div id="selected-chips" class="selected-chips" aria-live="polite" aria-atomic="true"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="products-section">
+  <div class="container">
+    <!-- контейнер для продуктов — уникальный класс/id -->
+    <div id="productsContainer" class="products__list" aria-live="polite"></div>
+  </div>
+</section>
+
+    <script type="module" src="./src/js/mian.js"></script>
+</body>
+
+</html>

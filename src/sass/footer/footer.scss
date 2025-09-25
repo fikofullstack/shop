@@ -12,6 +12,10 @@
     height: 545px;
     background-color: $dark;
 
+    &__policy2 {
+        display: none;
+    }
+
     &__wrapper {
         display: flex;
         gap: 160px;
@@ -36,7 +40,7 @@
             font-style: Black;
             font-size: 36px;
             line-height: 130%;
-            text-align: center;
+
             text-transform: uppercase;
             color: $light;
 
@@ -48,6 +52,17 @@
         font-size: 17px;
         line-height: 130%;
         color: $light;
+
+        &-text {
+            color: #6b6a6a;
+        }
+    }
+
+    &__list {
+        &-container {
+            display: flex;
+            gap: 160px;
+        }
     }
 
 
@@ -56,11 +71,11 @@
     &__useful {
         display: flex;
         flex-direction: column;
+        width: 104px;
         gap: 15px;
 
         &-header {
             font-weight: 700;
-            font-style: Bold;
             font-size: 24px;
             line-height: 140%;
             color: $light;
@@ -88,12 +103,17 @@
     .footer {
         &__wrapper {
             gap: 50px;
+            justify-content: center;
+        }
+
+        &__list {
+            &-container {
+                gap: 50px;
+                justify-content: center;
+            }
         }
 
         &__left {
-            align-items: center;
-            text-align: center;
-
             &-header {
                 font-size: 30px;
             }
@@ -106,4 +126,57 @@
         }
     }
 
+}
+
+@media screen and (max-width: 1000px) {
+    .footer {
+        &__policy2 {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        &__policy {
+            &-text {
+                margin-left: 30px;
+            }
+        }
+
+
+        &__policy1 {
+            display: none;
+        }
+
+        &__wrapper {
+            flex-direction: column;
+            margin-top: 90px;
+        }
+
+        &__list {
+            &-container {
+                gap: 40px;
+            }
+        }
+
+        &__left {
+            flex-direction: row;
+            justify-content: center;
+
+            &-header {
+                width: 200px;
+            }
+        }
+    }
+
+}
+
+@media screen and (max-width: 1000px) {
+    .footer {
+        height: 100%;
+        &__list {
+            &-container {
+                flex-direction: column;
+            }
+        }
+    }
 }

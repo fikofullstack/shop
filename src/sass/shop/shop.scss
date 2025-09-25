@@ -1,0 +1,275 @@
+@use "../basic/variables.scss" as *;
+
+:root {
+    --cols: 1;
+    /* по умолчанию - list */
+    --gap: 16px;
+    --card-bg: #fff;
+    --card-radius: 10px;
+}
+.dropdown-button {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 0;
+} 
+
+.head1 {
+    background-color: rgba(247, 237, 228, 1);
+    width: 100vw;
+
+    &__up {
+        display: flex;
+        gap: 60px;
+    }
+
+    &__header {
+        font-weight: 900;
+        font-size: 60px;
+        line-height: 130%;
+    }
+
+    &__text {
+        display: flex;
+        width: 630px;
+        align-items: center;
+        font-weight: 400;
+        font-size: 21px;
+        line-height: 130%;
+    }
+}
+
+.filters {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    min-width: 140px;
+}
+
+.dropdown-button {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    border-radius: 6px;
+}
+
+.arrow {
+    display: inline-block;
+    transition: transform 0.18s ease;
+    user-select: none;
+}
+
+.dropdown.open .arrow {
+    transform: rotate(180deg);
+}
+
+.dropdown-list {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    min-width: 180px;
+    max-height: 220px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    background: #fff;
+    z-index: 1000;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    padding: 6px 0;
+}
+
+.dropdown.open .dropdown-list {
+    display: block;
+}
+
+.dropdown-list label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.dropdown-list label:hover {
+    background: #f6f6f6;
+}
+
+/* Чипы (показываются снизу) */
+.selected-chips {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+
+.chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #111;
+    /* тёмный фон */
+    color: #fff;
+    /* текст белый */
+    padding: 6px 12px;
+    border-radius: 12px;
+    /* скругление */
+    font-size: 14px;
+    min-height: 34px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.chip .label {
+    text-align: center;
+    white-space: nowrap;
+}
+
+.chip button.remove {
+    border: none;
+    background: transparent;
+    color: #ddd;
+    cursor: pointer;
+    padding: 0;
+    font-size: 14px;
+    line-height: 1;
+}
+
+/* адаптив */
+@media (max-width: 560px) {
+    .filters {
+        gap: 8px;
+    }
+
+    .dropdown {
+        min-width: 120px;
+    }
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+/* layout toggle */
+.view-toggle {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.view-toggle button {
+    border: 1px solid #ccc;
+    background: #fff;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.view-toggle button.active {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    border-color: #000;
+    font-weight: 600;
+}
+
+/* Контейнер продуктов: grid controlled by --cols */
+.products {
+    display: grid;
+    grid-template-columns: repeat(var(--cols), 1fr);
+    gap: var(--gap);
+}
+
+/* карточка продукта */
+.product {
+    background: var(--card-bg);
+    padding: 12px;
+    border-radius: var(--card-radius);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+/* для layout list показываем картинку слева и текст справа
+     для grid — картинка сверху, текст снизу — реализуем через изменение flex-direction в медиа или классах */
+.product--grid {
+    flex-direction: column;
+    text-align: center;
+}
+
+.product__img {
+    width: 96px;
+    height: 96px;
+    background: #ececec;
+    border-radius: 8px;
+    flex-shrink: 0;
+    object-fit: cover;
+}
+
+.product__info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-start;
+}
+
+.product--grid .product__info {
+    align-items: center;
+}
+
+.product__title {
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.product__meta {
+    color: #666;
+    font-size: 13px;
+}
+
+.product__price {
+    margin-top: 6px;
+    font-weight: 700;
+}
+
+/* Responsive: change columns for different widths. When user selects 'grid', we'll set --cols accordingly via JS */
+@media (min-width: 600px) {
+    :root {
+        --cols: 2;
+    }
+
+    /* default responsive behaviour (if user didn't toggle) */
+}
+
+@media (min-width: 960px) {
+    :root {
+        --cols: 3;
+    }
+}
+
+/* helpers */
+.controls {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.results-info {
+    color: #444;
+}

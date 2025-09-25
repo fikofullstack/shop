@@ -1,4 +1,5 @@
 import '../sass/style.scss';
+import './ui.js';
 
 
 
@@ -120,6 +121,9 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+
+
+
 document.addEventListener('DOMContentLoaded', () => {
   const slides = Array.from(document.querySelectorAll('.pp-slide'));
   const prevBtn = document.querySelector('.pp-prev');
@@ -132,7 +136,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function getDefaultIndexes() {
-    if (window.innerWidth <= 1000) {
+    if (window.innerWidth <= 600) {
+      return [0];
+    } else if (window.innerWidth <= 1000) {
       return [0, 1];
     }
     return [0, 1, 2];
@@ -147,18 +153,32 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   prevBtn.addEventListener('click', () => {
-    if (window.innerWidth > 1000) return; // не работает на десктопе
-    if (visibleIndexes[0] > 0) {
-      visibleIndexes = [visibleIndexes[0] - 1, visibleIndexes[0]];
-      showSlides(visibleIndexes);
+    if (window.innerWidth > 1000) return;
+    if (window.innerWidth <= 600) {
+      if (visibleIndexes[0] > 0) {
+        visibleIndexes = [visibleIndexes[0] - 1];
+        showSlides(visibleIndexes);
+      }
+    } else {
+      if (visibleIndexes[0] > 0) {
+        visibleIndexes = [visibleIndexes[0] - 1, visibleIndexes[0]];
+        showSlides(visibleIndexes);
+      }
     }
   });
 
   nextBtn.addEventListener('click', () => {
-    if (window.innerWidth > 1000) return; // не работает на десктопе
-    if (visibleIndexes[1] < slides.length - 1) {
-      visibleIndexes = [visibleIndexes[1], visibleIndexes[1] + 1];
-      showSlides(visibleIndexes);
+    if (window.innerWidth > 1000) return;
+    if (window.innerWidth <= 600) {
+      if (visibleIndexes[0] < slides.length - 1) {
+        visibleIndexes = [visibleIndexes[0] + 1];
+        showSlides(visibleIndexes);
+      }
+    } else {
+      if (visibleIndexes[1] < slides.length - 1) {
+        visibleIndexes = [visibleIndexes[1], visibleIndexes[1] + 1];
+        showSlides(visibleIndexes);
+      }
     }
   });
 });

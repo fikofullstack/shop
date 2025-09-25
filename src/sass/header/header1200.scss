@@ -151,5 +151,17 @@
     .header__nav {
         display: none;
     }
-    
+}
+
+@media (max-width: 768px) {
+    .header {
+        &__logo {
+            &-text {
+                display: none;
+            }
+            &-text1 {
+                display: block;
+            }
+        }
+    }
 }
