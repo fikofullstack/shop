@@ -1,14 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // ---------- конфиг ----------
-  const CHIP_ANIM_MS = 180; // должен совпадать с transition .chip в CSS (0.18s)
+  // ---------- helpers ----------
+  const ANIM_MS = 180; // должен совпадать с .chip transition (0.18s)
 
-  // ---------- утилиты ----------
-  const qs = (s, ctx = document) => ctx.querySelector(s);
-  const qsa = (s, ctx = document) => Array.from(ctx.querySelectorAll(s));
-  const chipId = (group, value) => `chip--${group}--${value}`.replace(/\s+/g, '-').toLowerCase();
-  const safeText = v => (v == null ? '' : String(v));
+  function chipId(group, value) {
+    return `chip--${group}--${value}`.replace(/\s+/g, '-').toLowerCase();
+  }
 
-  // ---------- DOM ссылки (без падающих ошибок) ----------
+  function qs(sel, ctx = document) { return ctx.querySelector(sel); }
+  function qsa(sel, ctx = document) { return Array.from(ctx.querySelectorAll(sel)); }
+
+  // ---------- DOM refs (safe) ----------
   const chipsContainer = qs('#selected-chips');
   const productsContainer = qs('#productsContainer');
   const resultsCount = qs('#resultsCount');
@@ -16,154 +17,144 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnList = qs('#btnList');
   const btnGrid = qs('#btnGrid');
 
-  // предупреждения (не критично)
-  if (!productsContainer) console.warn('Warning: #productsContainer not found');
-  if (!chipsContainer) console.warn('Warning: #selected-chips not found');
+  // если какие-то элементы отсутствуют — логируем, но не ломаем
+  if (!productsContainer) console.warn('productsContainer not found (#productsContainer)');
+  if (!chipsContainer) console.warn('selected-chips container not found (#selected-chips)');
 
-  // ---------- демо-данные (твои products) ----------
+  // ---------- products data (demo) ----------
   const products = [
-    {id:1, title:'T-Shirt Red S', price:29, color:'Red', size:'S', material:'Cotton', image:''},
+    {id:1, title:'T-Shirt Red S', price:29, color:'Red', size:'S', material:'Cotton', image:'./src/img/rename/1.png'},
     {id:2, title:'T-Shirt Blue M', price:35, color:'Blue', size:'M', material:'Cotton', image:''},
     {id:3, title:'Leather Jacket L', price:199, color:'Black', size:'L', material:'Leather', image:''},
     {id:4, title:'Wool Sweater M', price:89, color:'Black', size:'M', material:'Wool', image:''},
     {id:5, title:'Casual Shirt L', price:45, color:'Blue', size:'L', material:'Cotton', image:''},
     {id:6, title:'Denim Jacket M', price:120, color:'Blue', size:'M', material:'Cotton', image:''},
-    {id:7, title:'Trousers L', price:75, color:'Black', size:'L', material:'Polyester', image:''},
-    {id:8, title:'Shirt S', price:40, color:'Red', size:'S', material:'Cotton', image:''},
-    {id:9, title:'Coat L', price:210, color:'Black', size:'L', material:'Leather', image:''},
-    {id:10, title:'Hoodie M', price:60, color:'Blue', size:'M', material:'Cotton', image:''},
-    {id:11, title:'Shorts S', price:25, color:'Red', size:'S', material:'Polyester', image:''},
-    {id:12, title:'Sweatpants M', price:55, color:'Black', size:'M', material:'Cotton', image:''},
+    {id:7, title:'Trousers L', price:75, color:'Black', size:'L', material:'Polyester', image:'./src/img/rename/7.png'},
+    {id:8, title:'Shirt S', price:40, color:'Red', size:'S', material:'Cotton', image:'./src/img/rename/8.png'},
+    {id:9, title:'Coat L', price:210, color:'Black', size:'L', material:'Leather', image:'./src/img/rename/9.png'},
+    {id:10, title:'Hoodie M', price:60, color:'Blue', size:'M', material:'Cotton', image:'./src/img/rename/10.png'},
+    {id:11, title:'Shorts S', price:25, color:'Red', size:'S', material:'Polyester', image:'./src/img/rename/11.png'},
+    {id:12, title:'Sweatpants M', price:55, color:'Black', size:'M', material:'Cotton', image:'./src/img/rename/12.png'},
   ];
 
-  // ---------- dropdown: open/close и keyboard ----------
-  function closeOtherDropdowns(except = null) {
-    qsa('.dropdown.open').forEach(d => {
-      if (d !== except) {
-        d.classList.remove('open');
-        const b = qs('.dropdown-button', d);
-        if (b) b.setAttribute('aria-expanded', 'false');
-      }
-    });
-  }
+  // ---------- dropdown open/close management ----------
+  function setupDropdowns() {
+    qsa('.dropdown').forEach(drop => {
+      const btn = qs('.dropdown-button', drop);
+      const list = qs('.dropdown-list', drop);
 
-  function setupDropdown(drop) {
-    const btn = qs('.dropdown-button', drop);
-    const list = qs('.dropdown-list', drop);
+      if (!btn) return;
 
-    if (!btn) return;
+      // click on button toggles open/closed
+      btn.addEventListener('click', (ev) => {
+        ev.stopPropagation();
+        const isOpen = drop.classList.toggle('open');
+        // set aria-expanded for accessibility
+        btn.setAttribute('aria-expanded', String(isOpen));
+        // if opened, close other dropdowns
+        if (isOpen) closeOtherDropdowns(drop);
+      });
 
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const isOpen = drop.classList.toggle('open');
-      btn.setAttribute('aria-expanded', String(isOpen));
-      if (isOpen) closeOtherDropdowns(drop);
-    });
+      // close when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!drop.contains(e.target)) {
+          drop.classList.remove('open');
+          if (btn) btn.setAttribute('aria-expanded', 'false');
+        }
+      });
 
-    // keyboard: Enter/Space open, Esc close
-    btn.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        btn.click();
-      } else if (e.key === 'Escape') {
-        drop.classList.remove('open');
-        btn.setAttribute('aria-expanded', 'false');
-        btn.focus();
-      }
-    });
-
-    if (list) {
-      list.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
+      // keyboard support: Enter/Space toggle, Esc close
+      btn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          btn.click();
+        } else if (e.key === 'Escape') {
           drop.classList.remove('open');
           btn.setAttribute('aria-expanded', 'false');
           btn.focus();
         }
       });
-    }
-
-    // close when clicking outside this dropdown
-    document.addEventListener('click', (e) => {
-      if (!drop.contains(e.target)) {
-        drop.classList.remove('open');
-        btn.setAttribute('aria-expanded', 'false');
+      // optional: keyboard inside list to close with Esc
+      if (list) {
+        list.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            drop.classList.remove('open');
+            btn.setAttribute('aria-expanded', 'false');
+            btn.focus();
+          }
+        });
       }
     });
   }
 
-  qsa('.dropdown').forEach(setupDropdown);
-
-  // глобальное закрытие по ESC
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      qsa('.dropdown.open').forEach(d => {
+  function closeOtherDropdowns(current) {
+    qsa('.dropdown.open').forEach(d => {
+      if (d !== current) {
         d.classList.remove('open');
         const b = qs('.dropdown-button', d);
         if (b) b.setAttribute('aria-expanded', 'false');
-      });
-    }
-  });
+      }
+    });
+  }
 
-  // ---------- chips: add / remove (с анимацией) ----------
+  // ---------- chips management ----------
   function addChip(group, value, checkbox) {
     if (!chipsContainer) return;
     const id = chipId(group, value);
-    if (qs(`#${id}`)) return; // уже есть
+    if (qs('#' + id)) return; // уже есть
 
     const chip = document.createElement('div');
     chip.className = 'chip';
     chip.id = id;
 
-    const span = document.createElement('span');
-    span.className = 'label';
-    span.textContent = `${group}: ${value}`;
+    const label = document.createElement('span');
+    label.className = 'label';
+    label.textContent = `${group}: ${value}`;
 
-    const btn = document.createElement('button');
-    btn.className = 'remove';
-    btn.type = 'button';
-    btn.title = 'Удалить фильтр';
-    btn.innerHTML = '✕';
+    const btnRemove = document.createElement('button');
+    btnRemove.className = 'remove';
+    btnRemove.type = 'button';
+    btnRemove.title = 'Удалить фильтр';
+    btnRemove.innerHTML = '✕';
 
-    btn.addEventListener('click', () => {
-      // снять чекбокс и анимированно удалить чип
-      if (checkbox) checkbox.checked = false;
+    btnRemove.addEventListener('click', () => {
+      // визуальное удаление + синхронизация чекбокса
       chip.classList.add('removing');
-      setTimeout(() => chip.remove(), CHIP_ANIM_MS);
-      // перерендерим продукты чуть позже (после анимации)
-      setTimeout(renderProducts, CHIP_ANIM_MS + 10);
+      if (checkbox) checkbox.checked = false;
+      setTimeout(() => chip.remove(), ANIM_MS);
+      // после снятия чекбокса — перерендер продуктов
+      setTimeout(renderProducts, ANIM_MS + 10);
     });
 
-    chip.appendChild(span);
-    chip.appendChild(btn);
+    chip.appendChild(label);
+    chip.appendChild(btnRemove);
     chipsContainer.appendChild(chip);
   }
 
-  function removeChip(id) {
-    const el = qs(`#${id}`);
+  function removeChipById(id) {
+    const el = qs('#' + id);
     if (!el) return;
     el.classList.add('removing');
-    setTimeout(() => el.remove(), CHIP_ANIM_MS);
+    setTimeout(() => el.remove(), ANIM_MS);
   }
 
-  // клик по чипу — опционально: открыть соответствующий dropdown и сфокусировать кнопку
+  // При клике на контейнер чипов — если клик по лейблу, открыть соответствующий dropdown
   if (chipsContainer) {
     chipsContainer.addEventListener('click', (e) => {
       const chip = e.target.closest('.chip');
       if (!chip) return;
-      // ожидаем id формата chip--group--value
+      // parse group и value из id (chip--group--value)
       const parts = chip.id.split('--');
       if (parts.length >= 3) {
-        const groupRaw = parts[1]; // может быть lowercased
-        // пробуем найти .dropdown[data-group="GroupName"] — учитываем Title Case
-        const guess = groupRaw.replace(/-/g, ' ');
-        // пробуем несколько вариантов (точное соответствие, title case)
-        const ddExact = document.querySelector(`.dropdown[data-group="${guess}"]`) ||
-                        document.querySelector(`.dropdown[data-group="${capitalize(guess)}"]`);
-        if (ddExact) {
-          const btn = qs('.dropdown-button', ddExact);
+        const group = parts[1];
+        // найдем dropdown с data-group == Group (регистрозависимость может быть важна)
+        const dd = document.querySelector(`.dropdown[data-group="${capitalize(group)}"]`);
+        if (dd) {
+          const btn = qs('.dropdown-button', dd);
           if (btn) {
-            closeOtherDropdowns(ddExact);
-            ddExact.classList.add('open');
+            // откроем dropdown и сфокусируем кнопку
+            closeOtherDropdowns(dd);
+            dd.classList.add('open');
             btn.setAttribute('aria-expanded', 'true');
             btn.focus();
           }
@@ -172,48 +163,48 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  function capitalize(s) {
-    return s.replace(/\b\w/g, c => c.toUpperCase());
+  // helper to transform group (chip id uses lowercase from chipId) back to Title case
+  function capitalize(str) {
+    if (!str) return str;
+    return str.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
   }
 
-  // ---------- чекбоксы: init, синхронизация с чипами ----------
+  // ---------- filter checkbox handling ----------
+  // create map from checkbox -> event will add/remove chips
   function initFilterCheckboxes() {
     qsa('.filter').forEach(chk => {
-      // fallback: если dataset.group нет, взять ближайший .dropdown[data-group]
+      // ensure data-group exists. if not, fallback to parent .dropdown data-group
       if (!chk.dataset.group) {
         const dd = chk.closest('.dropdown');
         if (dd && dd.dataset.group) chk.dataset.group = dd.dataset.group;
       }
-      // fallback для data-value
+      // ensure data-value fallback
       if (!chk.dataset.value) chk.dataset.value = chk.value || chk.getAttribute('value') || chk.nextSibling?.textContent?.trim();
-
-      // если чекбокс уже отмечен при загрузке — создаём чип
-      if (chk.checked) {
-        addChip(chk.dataset.group || 'Filter', chk.dataset.value || chk.value, chk);
-      }
 
       chk.addEventListener('change', (e) => {
         const checkbox = e.target;
+        const value = checkbox.dataset.value;
         const group = checkbox.dataset.group || 'Filter';
-        const value = checkbox.dataset.value || checkbox.value;
         const id = chipId(group, value);
 
-        if (checkbox.checked) addChip(group, value, checkbox);
-        else removeChip(id);
-
-        // немедленный рендер результатов
+        if (checkbox.checked) {
+          addChip(group, value, checkbox);
+        } else {
+          // remove chip and update UI
+          removeChipById(id);
+        }
+        // rerender product list immediately (or after removing animation if you prefer)
+        // if you want waiting for removal animation, wrap in setTimeout(...)
         renderProducts();
       });
     });
   }
 
-  initFilterCheckboxes();
-
-  // ---------- фильтрация / сортировка ----------
+  // ---------- filtering logic (copied + slightly hardened) ----------
   function getActiveFilters() {
     const active = {};
     qsa('.filter:checked').forEach(chk => {
-      const g = chk.dataset.group || 'Filter';
+      const g = chk.dataset.group || chk.getAttribute('data-group') || 'Filter';
       if (!active[g]) active[g] = new Set();
       active[g].add(chk.dataset.value || chk.value);
     });
@@ -221,12 +212,12 @@ document.addEventListener('DOMContentLoaded', () => {
     return active;
   }
 
-  function passesPriceFilter(prod, ranges) {
-    if (!ranges || ranges.length === 0) return true;
-    for (const r of ranges) {
+  function passesPriceFilter(prod, priceRanges) {
+    if (!priceRanges || priceRanges.length === 0) return true;
+    for (const r of priceRanges) {
       if (r.includes('+')) {
         const min = Number(r.replace('+',''));
-        if (!isNaN(min) && prod.price >= min) return true;
+        if (prod.price >= min) return true;
       } else {
         const [min,max] = r.split('-').map(Number);
         if (!isNaN(min) && !isNaN(max) && prod.price >= min && prod.price <= max) return true;
@@ -237,10 +228,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function filterProducts(productsList, activeFilters) {
     return productsList.filter(p => {
-      if (activeFilters.Size && activeFilters.Size.length && !activeFilters.Size.includes(p.size)) return false;
-      if (activeFilters.Color && activeFilters.Color.length && !activeFilters.Color.includes(p.color)) return false;
-      if (activeFilters.Material && activeFilters.Material.length && !activeFilters.Material.includes(p.material)) return false;
-      if (activeFilters.Price && activeFilters.Price.length && !passesPriceFilter(p, activeFilters.Price)) return false;
+      if (activeFilters.Size && activeFilters.Size.length) {
+        if (!activeFilters.Size.includes(p.size)) return false;
+      }
+      if (activeFilters.Color && activeFilters.Color.length) {
+        if (!activeFilters.Color.includes(p.color)) return false;
+      }
+      if (activeFilters.Material && activeFilters.Material.length) {
+        if (!activeFilters.Material.includes(p.material)) return false;
+      }
+      if (activeFilters.Price && activeFilters.Price.length) {
+        if (!passesPriceFilter(p, activeFilters.Price)) return false;
+      }
       return true;
     });
   }
@@ -253,17 +252,18 @@ document.addEventListener('DOMContentLoaded', () => {
     return copy;
   }
 
-  // ---------- рендер карточек ----------
+  // ---------- render ----------
   function renderProducts() {
     if (!productsContainer) return;
-    const active = getActiveFilters();
-    let filtered = filterProducts(products, active);
+    const activeFilters = getActiveFilters();
+    let filtered = filterProducts(products, activeFilters);
     const sortVal = sortSelect ? sortSelect.value : 'default';
     filtered = sortProducts(filtered, sortVal);
-
     if (resultsCount) resultsCount.textContent = `Результаты: ${filtered.length}`;
+
     productsContainer.innerHTML = '';
 
+    // кол-во колонок по CSS-переменной
     const cols = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--cols')) || 1;
 
     filtered.forEach(p => {
@@ -274,13 +274,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const img = document.createElement('div');
       img.className = 'product__img';
       if (p.image) {
-        const im = document.createElement('img');
-        im.src = p.image;
-        im.alt = p.title;
-        im.style.width = '100%';
-        im.style.height = '100%';
-        im.style.objectFit = 'cover';
-        img.appendChild(im);
+        const imgele = document.createElement('img');
+        imgele.src = p.image;
+        imgele.alt = p.title;
+        imgele.style.width = '100%';
+        imgele.style.height = '100%';
+        imgele.style.objectFit = 'cover';
+        img.appendChild(imgele);
       }
 
       const info = document.createElement('div');
@@ -297,20 +297,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // safe escape (very small util)
   function escapeHtml(s) {
-    return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    return String(s).replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   }
 
-  // ---------- переключатель list/grid + адаптив ----------
+  // ---------- layout toggle (list/grid) ----------
   function setLayout(mode) {
     if (mode === 'list') {
       document.documentElement.style.setProperty('--cols', 1);
       if (btnList) btnList.classList.add('active');
       if (btnGrid) btnGrid.classList.remove('active');
     } else {
-      // подбираем колонки по ширине
-      const w = window.innerWidth;
+      // compute default based on width for grid
       let cols = 3;
+      const w = window.innerWidth;
       if (w < 600) cols = 1;
       else if (w < 960) cols = 2;
       else cols = 3;
@@ -326,10 +327,11 @@ document.addEventListener('DOMContentLoaded', () => {
     btnGrid.addEventListener('click', () => setLayout('grid'));
   }
 
+  // adapt columns on resize when grid active
   window.addEventListener('resize', () => {
     if (!btnGrid || !btnGrid.classList.contains('active')) return;
-    const w = window.innerWidth;
     let cols = 3;
+    const w = window.innerWidth;
     if (w < 600) cols = 1;
     else if (w < 960) cols = 2;
     else cols = 3;
@@ -337,18 +339,33 @@ document.addEventListener('DOMContentLoaded', () => {
     renderProducts();
   });
 
-  // если есть селектор сортировки — навесим слушатель
-  if (sortSelect) sortSelect.addEventListener('change', () => renderProducts());
-
-  // ---------- стартовая инициализация ----------
-  // Рендер чипов для уже чекнутых (если есть)
+  // ---------- initialisation ----------
+  setupDropdowns();
+  initFilterCheckboxes();
+  // render initial chips for already-checked checkboxes (if any)
   qsa('.filter:checked').forEach(chk => {
     addChip(chk.dataset.group || 'Filter', chk.dataset.value || chk.value, chk);
   });
 
-  // стартовый режим
+  // default layout: grid
   setLayout('grid');
 
-  // первый рендер
+  // initial render
   renderProducts();
+
+  // close dropdowns on ESC globally
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      qsa('.dropdown.open').forEach(d => {
+        d.classList.remove('open');
+        const b = qs('.dropdown-button', d);
+        if (b) b.setAttribute('aria-expanded', 'false');
+      });
+    }
+  });
+
+  // ------------ end DOMContentLoaded ------------
 });
+
+
+console.log(p)

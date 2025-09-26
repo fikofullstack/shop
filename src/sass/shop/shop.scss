@@ -18,7 +18,7 @@
 
 .head1 {
     background-color: rgba(247, 237, 228, 1);
-    width: 100vw;
+    width: 100%;
 
     &__up {
         display: flex;
@@ -209,7 +209,7 @@
 /* для layout list показываем картинку слева и текст справа
      для grid — картинка сверху, текст снизу — реализуем через изменение flex-direction в медиа или классах */
 .product--grid {
-    flex-direction: column;
+    
     text-align: center;
 }
 

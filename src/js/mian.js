@@ -1,5 +1,4 @@
 import '../sass/style.scss';
-import './ui.js';
 
 
 
