@@ -1,5 +1,5 @@
 import '../sass/style.scss';
-
+import './ui.js';
 
 
 var swiper = new Swiper(".mySwiper", {

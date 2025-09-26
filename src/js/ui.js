@@ -23,18 +23,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ---------- products data (demo) ----------
   const products = [
-    {id:1, title:'T-Shirt Red S', price:29, color:'Red', size:'S', material:'Cotton', image:'./src/img/rename/1.png'},
+    {id:1, title:'T-Shirt Red S', price:29, color:'Red', size:'S', material:'Cotton', image:'/rename/1.png'},
     {id:2, title:'T-Shirt Blue M', price:35, color:'Blue', size:'M', material:'Cotton', image:''},
     {id:3, title:'Leather Jacket L', price:199, color:'Black', size:'L', material:'Leather', image:''},
     {id:4, title:'Wool Sweater M', price:89, color:'Black', size:'M', material:'Wool', image:''},
     {id:5, title:'Casual Shirt L', price:45, color:'Blue', size:'L', material:'Cotton', image:''},
     {id:6, title:'Denim Jacket M', price:120, color:'Blue', size:'M', material:'Cotton', image:''},
-    {id:7, title:'Trousers L', price:75, color:'Black', size:'L', material:'Polyester', image:'./src/img/rename/7.png'},
-    {id:8, title:'Shirt S', price:40, color:'Red', size:'S', material:'Cotton', image:'./src/img/rename/8.png'},
-    {id:9, title:'Coat L', price:210, color:'Black', size:'L', material:'Leather', image:'./src/img/rename/9.png'},
-    {id:10, title:'Hoodie M', price:60, color:'Blue', size:'M', material:'Cotton', image:'./src/img/rename/10.png'},
-    {id:11, title:'Shorts S', price:25, color:'Red', size:'S', material:'Polyester', image:'./src/img/rename/11.png'},
-    {id:12, title:'Sweatpants M', price:55, color:'Black', size:'M', material:'Cotton', image:'./src/img/rename/12.png'},
+    {id:7, title:'Trousers L', price:75, color:'Black', size:'L', material:'Polyester', image:'/rename/7.png'},
+    {id:8, title:'Shirt S', price:40, color:'Red', size:'S', material:'Cotton', image:'/rename/8.png'},
+    {id:9, title:'Coat L', price:210, color:'Black', size:'L', material:'Leather', image:'/rename/9.png'},
+    {id:10, title:'Hoodie M', price:60, color:'Blue', size:'M', material:'Cotton', image:'/rename/10.png'},
+    {id:11, title:'Shorts S', price:25, color:'Red', size:'S', material:'Polyester', image:'/rename/11.png'},
+    {id:12, title:'Sweatpants M', price:55, color:'Black', size:'M', material:'Cotton', image:'/rename/12.png'},
   ];
 
   // ---------- dropdown open/close management ----------
@@ -368,4 +368,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-console.log(p)
+export {}
