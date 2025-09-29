@@ -24,11 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // ---------- products data (demo) ----------
   const products = [
     {id:1, title:'T-Shirt Red S', price:29, color:'Red', size:'S', material:'Cotton', image:'/rename/1.png'},
-    {id:2, title:'T-Shirt Blue M', price:35, color:'Blue', size:'M', material:'Cotton', image:''},
-    {id:3, title:'Leather Jacket L', price:199, color:'Black', size:'L', material:'Leather', image:''},
-    {id:4, title:'Wool Sweater M', price:89, color:'Black', size:'M', material:'Wool', image:''},
-    {id:5, title:'Casual Shirt L', price:45, color:'Blue', size:'L', material:'Cotton', image:''},
-    {id:6, title:'Denim Jacket M', price:120, color:'Blue', size:'M', material:'Cotton', image:''},
+    {id:2, title:'T-Shirt Blue M', price:35, color:'Blue', size:'M', material:'Cotton', image:'/rename/2.png'},
+    {id:3, title:'Leather Jacket L', price:199, color:'Black', size:'L', material:'Leather', image:'/rename/3.png'},
+    {id:4, title:'Wool Sweater M', price:89, color:'Black', size:'M', material:'Wool', image:'/rename/4.png'},
+    {id:5, title:'Casual Shirt L', price:45, color:'Blue', size:'L', material:'Cotton', image:'/rename/5.png'},
+    {id:6, title:'Denim Jacket M', price:120, color:'Blue', size:'M', material:'Cotton', image:'/rename/6.png'},
     {id:7, title:'Trousers L', price:75, color:'Black', size:'L', material:'Polyester', image:'/rename/7.png'},
     {id:8, title:'Shirt S', price:40, color:'Red', size:'S', material:'Cotton', image:'/rename/8.png'},
     {id:9, title:'Coat L', price:210, color:'Black', size:'L', material:'Leather', image:'/rename/9.png'},
@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {id:11, title:'Shorts S', price:25, color:'Red', size:'S', material:'Polyester', image:'/rename/11.png'},
     {id:12, title:'Sweatpants M', price:55, color:'Black', size:'M', material:'Cotton', image:'/rename/12.png'},
   ];
+  
 
   // ---------- dropdown open/close management ----------
   function setupDropdowns() {
@@ -365,6 +366,28 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ------------ end DOMContentLoaded ------------
+});
+document.addEventListener('DOMContentLoaded', () => {
+  const burger = document.querySelector('.header__burger');
+  const menu = document.getElementById('header-menu');
+  const close = document.getElementById('header-menu-close');
+  const overlay = document.getElementById('header-menu-overlay');
+
+  function openMenu() {
+    menu.classList.add('header__menu--active');
+    overlay.classList.add('header__menu-overlay--active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    menu.classList.remove('header__menu--active');
+    overlay.classList.remove('header__menu-overlay--active');
+    document.body.style.overflow = '';
+  }
+
+  burger.addEventListener('click', openMenu);
+  close.addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu);
 });
 
 
