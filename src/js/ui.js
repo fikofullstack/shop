@@ -23,20 +23,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ---------- products data (demo) ----------
   const products = [
-    {id:1, title:'T-Shirt Red S', price:29, color:'Red', size:'S', material:'Cotton', image:'/rename/1.png'},
-    {id:2, title:'T-Shirt Blue M', price:35, color:'Blue', size:'M', material:'Cotton', image:'/rename/2.png'},
-    {id:3, title:'Leather Jacket L', price:199, color:'Black', size:'L', material:'Leather', image:'/rename/3.png'},
-    {id:4, title:'Wool Sweater M', price:89, color:'Black', size:'M', material:'Wool', image:'/rename/4.png'},
-    {id:5, title:'Casual Shirt L', price:45, color:'Blue', size:'L', material:'Cotton', image:'/rename/5.png'},
-    {id:6, title:'Denim Jacket M', price:120, color:'Blue', size:'M', material:'Cotton', image:'/rename/6.png'},
-    {id:7, title:'Trousers L', price:75, color:'Black', size:'L', material:'Polyester', image:'/rename/7.png'},
-    {id:8, title:'Shirt S', price:40, color:'Red', size:'S', material:'Cotton', image:'/rename/8.png'},
-    {id:9, title:'Coat L', price:210, color:'Black', size:'L', material:'Leather', image:'/rename/9.png'},
-    {id:10, title:'Hoodie M', price:60, color:'Blue', size:'M', material:'Cotton', image:'/rename/10.png'},
-    {id:11, title:'Shorts S', price:25, color:'Red', size:'S', material:'Polyester', image:'/rename/11.png'},
-    {id:12, title:'Sweatpants M', price:55, color:'Black', size:'M', material:'Cotton', image:'/rename/12.png'},
+    { id: 1, title: 'T-Shirt Red S', price: 29, color: 'Red', size: 'S', material: 'Cotton', description: 'Wool is stain resistant. This wear-resistant material perfectly retains heat. You can wrap yourself up comfortably lying on the couch.', image: '/rename/1.png' },
+    { id: 2, title: 'T-Shirt Blue M', price: 35, color: 'Blue', size: 'M', material: 'Cotton', description: 'Soft, pleasant to the touch chenille fabric. Polyester is used in the composition of the fabric, along with other materials.', image: '/rename/2.png' },
+    { id: 3, title: 'Leather Jacket L', price: 199, color: 'Black', size: 'L', material: 'Leather', description: 'An acrylic blanket is just as soft, warm and cozy as a wool blanket. At the same time, it is very easy to care for.', image: '/rename/3.png' },
+    { id: 4, title: 'Wool Sweater M', price: 89, color: 'Black', size: 'M', material: 'Wool', description: 'You can wrap yourself up comfortably lying on the couch or throw it over yourself when its cool.', image: '/rename/4.png' },
+    { id: 5, title: 'Casual Shirt L', price: 45, color: 'Blue', size: 'L', material: 'Cotton', description: 'You can wrap yourself up comfortably lying on the couch or throw it over yourself when its cool.', image: '/rename/5.png' },
+    { id: 6, title: 'Denim Jacket M', price: 120, color: 'Blue', size: 'M', material: 'Cotton', description: 'You can wrap yourself up comfortably lying on the couch or throw it over yourself when its cool.', image: '/rename/6.png' },
+    { id: 7, title: 'Trousers L', price: 75, color: 'Black', size: 'L', material: 'Polyester', description: 'You can wrap yourself up comfortably lying on the couch or throw it over yourself when its cool.', image: '/rename/7.png' },
+    { id: 8, title: 'Shirt S', price: 40, color: 'Red', size: 'S', material: 'Cotton', description: 'You can wrap yourself up comfortably lying on the couch or throw it over yourself when its cool.', image: '/rename/8.png' },
+    { id: 9, title: 'Coat L', price: 210, color: 'Black', size: 'L', material: 'Leather', description: 'You can wrap yourself up comfortably lying on the couch or throw it over yourself when its cool.', image: '/rename/9.png' },
+    { id: 10, title: 'Hoodie M', price: 60, color: 'Blue', size: 'M', material: 'Cotton', description: 'You can wrap yourself up comfortably lying on the couch or throw it over yourself when its cool.', image: '/rename/10.png' },
+    { id: 11, title: 'Shorts S', price: 25, color: 'Red', size: 'S', material: 'Polyester', description: 'You can wrap yourself up comfortably lying on the couch or throw it over yourself when its cool.', image: '/rename/11.png' },
+    { id: 12, title: 'Sweatpants M', price: 55, color: 'Black', size: 'M', material: 'Cotton', description: 'You can wrap yourself up comfortably lying on the couch or throw it over yourself when its cool.', image: '/rename/12.png' },
   ];
-  
+
 
   // ---------- dropdown open/close management ----------
   function setupDropdowns() {
@@ -194,8 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
           // remove chip and update UI
           removeChipById(id);
         }
-        // rerender product list immediately (or after removing animation if you prefer)
-        // if you want waiting for removal animation, wrap in setTimeout(...)
+
         renderProducts();
       });
     });
@@ -217,10 +216,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!priceRanges || priceRanges.length === 0) return true;
     for (const r of priceRanges) {
       if (r.includes('+')) {
-        const min = Number(r.replace('+',''));
+        const min = Number(r.replace('+', ''));
         if (prod.price >= min) return true;
       } else {
-        const [min,max] = r.split('-').map(Number);
+        const [min, max] = r.split('-').map(Number);
         if (!isNaN(min) && !isNaN(max) && prod.price >= min && prod.price <= max) return true;
       }
     }
@@ -248,8 +247,8 @@ document.addEventListener('DOMContentLoaded', () => {
   function sortProducts(list, sortKey) {
     if (!sortKey || sortKey === 'default') return list;
     const copy = [...list];
-    if (sortKey === 'price-asc') copy.sort((a,b) => a.price - b.price);
-    else if (sortKey === 'price-desc') copy.sort((a,b) => b.price - a.price);
+    if (sortKey === 'price-asc') copy.sort((a, b) => a.price - b.price);
+    else if (sortKey === 'price-desc') copy.sort((a, b) => b.price - a.price);
     return copy;
   }
 
@@ -271,6 +270,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const card = document.createElement('div');
       card.className = 'product';
       if (cols > 1) card.classList.add('product--grid');
+      else {
+        card.classList.add('product--list');
+      }
 
       const img = document.createElement('div');
       img.className = 'product__img';
@@ -288,8 +290,13 @@ document.addEventListener('DOMContentLoaded', () => {
       info.className = 'product__info';
       info.innerHTML = `
         <div class="product__title">${escapeHtml(p.title)}</div>
+         <div class="product__desc">${escapeHtml(p.description || '')}</div>
         <div class="product__meta">${escapeHtml(p.color)} · ${escapeHtml(p.size)} · ${escapeHtml(p.material)}</div>
         <div class="product__price">$${p.price}</div>
+        <div class="product__actions">
+           <button class="product__btn">Add to Cart</button>
+         </div>
+
       `;
 
       card.appendChild(img);
@@ -300,7 +307,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // safe escape (very small util)
   function escapeHtml(s) {
-    return String(s).replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    return String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   }
 
   // ---------- layout toggle (list/grid) ----------
@@ -390,5 +397,95 @@ document.addEventListener('DOMContentLoaded', () => {
   overlay.addEventListener('click', closeMenu);
 });
 
+/* ===== ADD: view toggle sync (append at JS file end) ===== */
+(function () {
+  // container (sənin HTML-də artıq var: id="productsContainer")
+  const container = document.getElementById('productsContainer') || document.querySelector('.products__list');
+  if (!container) return;
 
-export {}
+  // create/find buttons (we used the ids recommended above)
+  let btnGrid = document.getElementById('btnGrid');
+  let btnList = document.getElementById('btnList');
+
+  // If some other script expects global btnGrid/btnList variables, expose them:
+  if (!window.btnGrid) window.btnGrid = btnGrid;
+  if (!window.btnList) window.btnList = btnList;
+
+  // safe wrappers: if btn not found, create no-op
+  function setActiveButton(which) {
+    if (btnGrid) btnGrid.classList.toggle('active', which === 'grid');
+    if (btnGrid) btnGrid.setAttribute('aria-pressed', which === 'grid' ? 'true' : 'false');
+    if (btnList) btnList.classList.toggle('active', which === 'list');
+    if (btnList) btnList.setAttribute('aria-pressed', which === 'list' ? 'true' : 'false');
+  }
+
+  function applyListView(doList) {
+    if (doList) container.classList.add('list-view');
+    else container.classList.remove('list-view');
+  }
+
+  // click handlers: call setLayout if exists, sync list-view class, and save preference
+  function onListClick(e) {
+    // call existing setLayout if present
+    if (typeof setLayout === 'function') setLayout('list');
+    applyListView(true);
+    setActiveButton('list');
+    localStorage.setItem('preferredView', 'list');
+  }
+  function onGridClick(e) {
+    if (typeof setLayout === 'function') setLayout('grid');
+    applyListView(false);
+    setActiveButton('grid');
+    localStorage.setItem('preferredView', 'grid');
+  }
+
+  if (btnList) btnList.addEventListener('click', onListClick);
+  if (btnGrid) btnGrid.addEventListener('click', onGridClick);
+
+  // Initialize state from localStorage or from existing button .active
+  (function init() {
+    const pref = localStorage.getItem('preferredView');
+    if (pref === 'list') {
+      applyListView(true);
+      setActiveButton('list');
+    } else if (pref === 'grid') {
+      applyListView(false);
+      setActiveButton('grid');
+    } else {
+      // fallback: if btnGrid has .active add grid, if btnList has .active add list
+      if (btnList && btnList.classList.contains('active')) {
+        applyListView(true);
+        setActiveButton('list');
+      } else if (btnGrid && btnGrid.classList.contains('active')) {
+        applyListView(false);
+        setActiveButton('grid');
+      } else {
+        // default: keep existing grid behavior (no .list-view)
+        applyListView(false);
+        setActiveButton('grid');
+      }
+    }
+  })();
+
+  // Keep synchronization: if some other code toggles active class on the buttons,
+  // observe that and update list-view accordingly.
+  const obsConfig = { attributes: true, attributeFilter: ['class', 'aria-pressed'] };
+  const observerCb = (mutations) => {
+    mutations.forEach(m => {
+      const t = m.target;
+      if (t === btnList && btnList.classList.contains('active')) {
+        applyListView(true);
+        localStorage.setItem('preferredView', 'list');
+      }
+      if (t === btnGrid && btnGrid.classList.contains('active')) {
+        applyListView(false);
+        localStorage.setItem('preferredView', 'grid');
+      }
+    });
+  };
+  const mo = new MutationObserver(observerCb);
+  if (btnList) mo.observe(btnList, obsConfig);
+  if (btnGrid) mo.observe(btnGrid, obsConfig);
+
+})();
+/* ===== END view toggle sync ===== */

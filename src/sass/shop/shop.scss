@@ -4,7 +4,7 @@
     --cols: 1;
     /* по умолчанию - list */
     --gap: 16px;
-    --card-bg: #fff;
+    --card-bg: #f71111;
     --card-radius: 10px;
 }
 
@@ -215,18 +215,19 @@
 .products__list,
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(var(--cols), 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--gap);
 }
 
 /* Карточка продукта */
 .product {
-    
-    background: var(--card-bg);
+
+    background: beige;
     padding: 12px;
     border-radius: var(--card-radius);
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
     display: flex;
+    justify-content: start;
     gap: 12px;
     align-items: center;
 
@@ -234,7 +235,7 @@
         /* В grid режиме отображаем картинку сверху, текст по центру */
         flex-direction: column;
         text-align: center;
-        background-color: rgb(255, 119, 0);
+        background-color: beige;
 
         .product__info {
             align-items: center;
@@ -244,7 +245,7 @@
     &__img {
         width: 96px;
         height: 96px;
-        background: #ececec;
+        background: beige;
         border-radius: 8px;
         flex-shrink: 0;
         overflow: hidden;
@@ -254,6 +255,7 @@
             height: 100%;
             object-fit: cover;
             display: block;
+            background-color: beige;
         }
     }
 
@@ -282,14 +284,31 @@
 
 /* Responsive: default cols */
 @media (min-width: 600px) {
-    :root {
-        --cols: 2;
+
+    .products,
+    .products__list,
+    .products-grid {
+        display: grid;
+
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--gap);
     }
+
+    .product {
+        justify-content: center;
+    }
+
 }
 
 @media (min-width: 960px) {
-    :root {
-        --cols: 3;
+
+    .products,
+    .products__list,
+    .products-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--gap);
+        background-color: #fff;
     }
 }
 
@@ -310,7 +329,7 @@
     .products__list,
     .products-grid {
         width: 100%;
-        
+
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(3, auto);
         gap: var(--gap);
@@ -361,10 +380,216 @@
         height: 120px;
         gap: 50px;
     }
+
     &__pointers {
         display: flex;
         align-items: center;
         gap: 30px;
     }
 
+}
+
+/* ====== START: final list visual tweaks (paste at END of your scss) ====== */
+
+/* make list container single column */
+.products__list.list-view {
+    display: block;
+    gap: 0;
+}
+
+/* card base (more roomy like screenshot) */
+.products__list.list-view .product {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 18px 22px;
+    /* vertical + horizontal padding */
+    margin-bottom: 14px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: none;
+}
+
+/* left image panel: slightly larger and with beige background slice */
+.products__list.list-view .product__img {
+    width: 160px;
+    /* increased size */
+    height: 160px;
+    flex: 0 0 160px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #f5ebe0;
+    /* beige behind image like screenshot */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    /* small inner padding so image not touch edges */
+    box-sizing: border-box;
+}
+
+/* ensure image covers nicely */
+.products__list.list-view .product__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 6px;
+}
+
+/* central info: larger, more readable */
+.products__list.list-view .product__info {
+    position: relative;
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    padding-right: 220px;
+    /* reserve space for right column (price+button) */
+    box-sizing: border-box;
+}
+
+/* title — bigger and bolder */
+.products__list.list-view .product__title {
+    font-size: 18px;
+    font-weight: 800;
+    color: #111;
+    margin: 0;
+}
+
+/* description — a bit larger & taller */
+.products__list.list-view .product__meta {
+    font-size: 15px;
+    color: #444;
+    line-height: 1.5;
+    max-width: 70ch;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* bottom-left row: size + color side-by-side */
+.products__list.list-view .product__bottom {
+    margin-top: 6px;
+    display: flex;
+    gap: 28px;
+    font-size: 14px;
+    color: #333;
+    align-items: center;
+}
+
+/* emphasize labels (Size:, Color:) subtly */
+.products__list.list-view .product__bottom span {
+    color: #222;
+    font-weight: 600;
+}
+
+/* Price in top-right corner (absolute) */
+.products__list.list-view .product__price {
+    position: absolute;
+    display: flex;
+    justify-content: end;
+    width: 100%;
+    font-weight: 800;
+    font-size: 15px;
+    color: #222;
+    white-space: nowrap;
+}
+
+/* Controls (Add to cart) bottom-right */
+.products__list.list-view .product__controls {
+    position: absolute;
+    right: 22px;
+    bottom: 16px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+/* large pill button */
+.products__list.list-view .product__add,
+.products__list.list-view .product__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 26px;
+    border-radius: 28px;
+    background: #1a1a1a;
+    color: #fff;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    min-width: 140px;
+}
+
+/* responsive: stack vertically on narrow screens and keep price/button inline */
+@media (max-width: 780px) {
+    .products__list.list-view .product {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 14px;
+    }
+
+    .products__list.list-view .product__img {
+        width: 100%;
+        height: 220px;
+        flex: none;
+        padding: 0;
+        border-radius: 10px;
+    }
+
+    .products__list.list-view .product__info {
+        padding-right: 0;
+        margin-top: 12px;
+    }
+
+    .products__list.list-view .product__price,
+    .products__list.list-view .product__controls {
+        position: static;
+        align-self: flex-end;
+    }
+
+    .products__list.list-view .product__controls {
+        margin-top: 8px;
+    }
+}
+
+/* small polish: avoid double margins */
+.products__list.list-view .product+.product {
+    margin-top: 0;
+}
+
+/* ====== END: final list visual tweaks ====== */
+.product__desc {
+    font-size: 14px;
+    color: #666;
+    margin-top: 4px;
+}
+
+.product__actions {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+.product__button {
+    display: none; // default olaraq gizlənir
+}
+
+.product--list .product__button {
+    display: flex; // list görünüşündə görsənir
+    justify-content: flex-start;
+    margin-top: 10px;
+}
+
+.product--grid .product__button {
+    display: none; // grid görünüşündə gizli qalır
 }

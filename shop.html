@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Shop</title>
 </head>
 
@@ -90,6 +90,7 @@
             </div>
           </div>
 
+
           <!-- Color -->
           <div class="dropdown" data-group="Color" id="dropdown-color">
             <button type="button" class="dropdown-button" aria-expanded="false" aria-haspopup="listbox">
@@ -143,6 +144,12 @@
             </div>
           </div>
 
+          <!-- əlavə et: topbar / controls içərisinə -->
+          <div class="view-toggle" aria-label="Change view">
+            <button id="btnGrid" class="view-btn active" aria-pressed="true" title="Grid view">im</button>
+            <button id="btnList" class="view-btn" aria-pressed="false" title="List view">List</button>
+          </div>
+
           <!-- Выбранные фильтры (чипы) -->
           <div id="selected-chips" class="selected-chips" aria-live="polite" aria-atomic="true"></div>
         </div>
@@ -154,9 +161,14 @@
     <div class="container">
       <!-- контейнер для продуктов — уникальный класс/id -->
       <div id="productsContainer" class="products__list" aria-live="polite"></div>
+      <div id="productsContainer" class="products grid-view"></div>
+
+
+
 
       <div class="products__pagination">
-        <button class="pagination__button" id="prevPage" aria-label="Previous page"><img src="./src/icon/arrow_right_alt_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="prev"></button>
+        <button class="pagination__button" id="prevPage" aria-label="Previous page"><img
+            src="./src/icon/arrow_right_alt_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="prev"></button>
         <div class="products__pointers">
           <span class="pagination__info" id="pageInfo">1</span>
           <span class="pagination__info" id="pageInfo">2</span>
@@ -165,13 +177,33 @@
           <span class="pagination__info" id="pageInfo">...</span>
           <span class="pagination__info" id="totalPages">10</span>
         </div>
-        <button class="pagination__button" id="nextPage" aria-label="Next page"><img src="./src/icon/arrow_right_alt_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="next"></button>
+        <button class="pagination__button" id="nextPage" aria-label="Next page"><img
+            src="./src/icon/arrow_right_alt_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="next"></button>
+      </div>
+    </div>
+  </section>
+  <section class="last">
+    <div class="container">
+      <div class="last__wrapper">
+        <div class="last__view">
+          <img src="./public/rename/1.png" alt="" class="last__view-img">
+        </div>
+        <div class="last__view">
+          <img src="./public/rename/2.png" alt="" class="last__view-img">
+        </div>
+        <div class="last__view">
+          <img src="./public/rename/3.png" alt="" class="last__view-img">
+        </div>
+        <div class="last__view">
+          <img src="./public/rename/4.png" alt="" class="last__view-img">
+        </div>
       </div>
     </div>
   </section>
 
   <script type="module" src="./src/js/ui.js"></script>
   <script type="module" src="./src/js/mian.js"></script>
+
 </body>
 
 </html>
