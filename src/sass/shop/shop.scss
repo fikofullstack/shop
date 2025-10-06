@@ -170,6 +170,7 @@
     }
 }
 
+
 /* Адаптив для фильтров */
 @media (max-width: 560px) {
     .filters {
@@ -222,7 +223,7 @@
 /* Карточка продукта */
 .product {
 
-    background: beige;
+    
     padding: 12px;
     border-radius: var(--card-radius);
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
@@ -235,7 +236,6 @@
         /* В grid режиме отображаем картинку сверху, текст по центру */
         flex-direction: column;
         text-align: center;
-        background-color: beige;
 
         .product__info {
             align-items: center;
@@ -245,7 +245,7 @@
     &__img {
         width: 96px;
         height: 96px;
-        background: beige;
+        background: #f5ebe0;
         border-radius: 8px;
         flex-shrink: 0;
         overflow: hidden;
@@ -255,7 +255,7 @@
             height: 100%;
             object-fit: cover;
             display: block;
-            background-color: beige;
+            background-color: #f5ebe0;
         }
     }
 
@@ -269,6 +269,9 @@
     &__title {
         font-weight: 600;
         font-size: 15px;
+        width: 100%;
+        display: flex;
+
     }
 
     &__meta {
@@ -277,13 +280,14 @@
     }
 
     &__price {
-        margin-top: 6px;
+        display: flex;
+        gap: 50%;
         font-weight: 700;
     }
 }
 
 /* Responsive: default cols */
-@media (min-width: 600px) {
+@media (min-width: 700px) {
 
     .products,
     .products__list,
@@ -342,7 +346,7 @@
 
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 599px) {
 
     .products,
     .products__list,
@@ -368,7 +372,13 @@
             gap: 20px;
         }
     }
+    .product__title{
+    justify-content: space-between;
 }
+.product__info{
+    width: 100%;}
+}
+
 
 
 .products {
@@ -413,7 +423,7 @@
     box-shadow: none;
 }
 
-/* left image panel: slightly larger and with beige background slice */
+/* left image panel: slightly larger and with #f5ebe0 background slice */
 .products__list.list-view .product__img {
     width: 160px;
     /* increased size */
@@ -422,7 +432,7 @@
     border-radius: 10px;
     overflow: hidden;
     background: #f5ebe0;
-    /* beige behind image like screenshot */
+    /* #f5ebe0 behind image like screenshot */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -449,13 +459,14 @@
     flex-direction: column;
     gap: 10px;
     align-items: flex-start;
-    padding-right: 220px;
+
     /* reserve space for right column (price+button) */
     box-sizing: border-box;
 }
 
 /* title — bigger and bolder */
 .products__list.list-view .product__title {
+    width: 100%;
     font-size: 18px;
     font-weight: 800;
     color: #111;
@@ -493,7 +504,6 @@
 
 /* Price in top-right corner (absolute) */
 .products__list.list-view .product__price {
-    position: absolute;
     display: flex;
     justify-content: end;
     width: 100%;
@@ -536,6 +546,7 @@
         flex-direction: column;
         align-items: stretch;
         padding: 14px;
+
     }
 
     .products__list.list-view .product__img {

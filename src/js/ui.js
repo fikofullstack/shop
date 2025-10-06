@@ -282,22 +282,55 @@ document.addEventListener('DOMContentLoaded', () => {
         imgele.alt = p.title;
         imgele.style.width = '100%';
         imgele.style.height = '100%';
-        imgele.style.objectFit = 'cover';
+        imgele.style.objectFit = 'contain';
         img.appendChild(imgele);
       }
 
       const info = document.createElement('div');
       info.className = 'product__info';
       info.innerHTML = `
-        <div class="product__title">${escapeHtml(p.title)}</div>
-         <div class="product__desc">${escapeHtml(p.description || '')}</div>
-        <div class="product__meta">${escapeHtml(p.color)} · ${escapeHtml(p.size)} · ${escapeHtml(p.material)}</div>
-        <div class="product__price">$${p.price}</div>
+        <div class="product__title">${escapeHtml(p.title)}
+          <div class="product__price">$
+            ${p.price}
+          </div>
+        </div>
+         <div class="product__desc">
+            ${escapeHtml(p.description || '')}
+         </div>
+        <div class="product__meta">
+            ${escapeHtml(p.color)} · ${escapeHtml(p.size)} · ${escapeHtml(p.material)}
+        </div>
+        
         <div class="product__actions">
            <button class="product__btn">Add to Cart</button>
          </div>
 
       `;
+      // определяем, активен ли сейчас "grid mode"
+      function isGridMode() {
+        // 1) если явно есть класс list-view на контейнере — это НЕ grid
+        if (productsContainer && productsContainer.classList.contains('list-view')) return false;
+        // 2) если у кнопок явно есть .active — используем их
+        if (btnGrid && btnGrid.classList.contains('active')) return true;
+        if (btnList && btnList.classList.contains('active')) return false;
+        // 3) если пользователь сохранил предпочтение — учитываем
+        const pref = localStorage.getItem('preferredView');
+        if (pref === 'grid') return true;
+        if (pref === 'list') return false;
+        // 4) fallback: если действительно больше 1 колонки — считаем grid, иначе list
+        return (cols > 1);
+      }
+
+      // применяем к кнопке внутри карточки
+      const btn = info.querySelector('.product__btn');
+      if (btn) {
+        if (isGridMode()) {
+          btn.style.display = 'none';
+        } else {
+          btn.style.display = ''; // восстановить дефолт (показываем)
+        }
+      }
+
 
       card.appendChild(img);
       card.appendChild(info);
@@ -489,3 +522,89 @@ document.addEventListener('DOMContentLoaded', () => {
 
 })();
 /* ===== END view toggle sync ===== */
+
+/* === Post-render description injector (paste at end of your JS file) === */
+(function () {
+  const container = document.getElementById('productsContainer') || document.querySelector('.products__list');
+  if (!container) return;
+
+  // нормализация: убрать NBSP, сжать множественные пробелы, trim
+  function normalizeText(s) {
+    if (!s && s !== '') return '';
+    return String(s).replace(/\u00A0/g, ' ').replace(/\s+/g, ' ').trim();
+  }
+  // decode HTML entities (если в DOM есть &amp; и т.п.)
+  function decodeHtml(html) {
+    const t = document.createElement('textarea');
+    t.innerHTML = html;
+    return t.value;
+  }
+
+  function injectDescriptions() {
+    Array.from(container.querySelectorAll('.product')).forEach((prod, index) => {
+      if (prod.querySelector('.product__desc')) return; // уже есть
+      const titleEl = prod.querySelector('.product__title');
+      let descr = '';
+
+      if (titleEl) {
+        const titleText = normalizeText(decodeHtml(titleEl.textContent || titleEl.innerText || ''));
+        // найти по title (нормализуем и title из products)
+        const item = products.find(p => {
+          return normalizeText(String(p.title)) === titleText ||
+            normalizeText(decodeHtml(String(p.title || ''))) === titleText;
+        });
+        if (item && item.description) descr = item.description;
+      }
+
+      // fallback: по порядковому индексу, если не найдено по title
+      if (!descr && products[index] && products[index].description) {
+        descr = products[index].description;
+      }
+
+      if (descr) {
+        const info = prod.querySelector('.product__info') || prod;
+        const descEl = document.createElement('div');
+        descEl.className = 'product__desc';
+        descEl.textContent = descr;
+
+        // вставляем перед нижним блоком (.product__bottom) если есть, иначе перед ценой, иначе append
+        const bottom = info.querySelector('.product__bottom');
+        const price = info.querySelector('.product__price');
+        if (bottom) info.insertBefore(descEl, bottom);
+        else if (price) info.insertBefore(descEl, price.nextSibling);
+        else info.appendChild(descEl);
+      }
+    });
+
+    // синхронизируем видимость
+    syncDescVisibility();
+  }
+
+  function syncDescVisibility() {
+    const isList = container.classList.contains('list-view');
+    container.querySelectorAll('.product__desc').forEach(d => {
+      d.style.display = isList ? '' : 'none';
+    });
+  }
+
+  // выполнить сразу после текущего рендера
+  setTimeout(injectDescriptions, 20);
+
+  // наблюдаем за новыми карточками (если renderProducts заменяет innerHTML)
+  const obs = new MutationObserver(muts => {
+    let added = false;
+    for (const m of muts) {
+      if (m.addedNodes && m.addedNodes.length) { added = true; break; }
+    }
+    if (added) setTimeout(injectDescriptions, 10);
+  });
+  obs.observe(container, { childList: true });
+
+  // наблюдаем за изменением класса контейнера (list-view toggle)
+  const classObs = new MutationObserver(syncDescVisibility);
+  classObs.observe(container, { attributes: true, attributeFilter: ['class'] });
+
+  // sync при загрузке окна
+  window.addEventListener('load', syncDescVisibility);
+
+})();
