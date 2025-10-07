@@ -543,15 +543,12 @@
 /* responsive: stack vertically on narrow screens and keep price/button inline */
 @media (max-width: 780px) {
     .products__list.list-view .product {
-        flex-direction: column;
         align-items: stretch;
         padding: 14px;
 
     }
 
     .products__list.list-view .product__img {
-        width: 100%;
-        height: 220px;
         flex: none;
         padding: 0;
         border-radius: 10px;
@@ -569,7 +566,7 @@
     }
 
     .products__list.list-view .product__controls {
-        margin-top: 8px;
+        margin-top: 8px; 
     }
 }
 

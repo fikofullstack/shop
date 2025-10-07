@@ -33,13 +33,25 @@
     }
 
     &__cart {
-        width: 181px;
+        width: 120px;
         height: 27px;
+        &-icon {
+            display: flex;
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
 
         &-link {
             display: flex;
             justify-content: space-evenly;
         }
+        &-link2 {
+            justify-content: space-evenly;
+        }
+    }
+    &__cart2{
+        display: none;
     }
 
     &__logo {

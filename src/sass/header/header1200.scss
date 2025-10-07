@@ -121,7 +121,7 @@
         }
     }
 
-    
+
 }
 
 .header__burger {
@@ -140,9 +140,10 @@
         width: 40px;
         height: 20px;
     }
+
     .header {
-        &__logo{
-            &-text{
+        &__logo {
+            &-text {
                 transform: translateX(0px);
             }
         }
@@ -159,9 +160,35 @@
             &-text {
                 display: none;
             }
+
             &-text1 {
                 display: block;
             }
+        }
+
+        &__cart {
+            display: none;
+
+            &-icon {
+                display: flex;
+                width: 60px;
+                height: 40px;
+                text-align: center;justify-content: center;align-items: center;gap: 6px;
+                margin-right: 10px;
+            }
+
+            &-link {
+                display: flex;
+                justify-content: space-evenly;
+            }
+
+            &-link2 {
+                justify-content: space-evenly;
+            }
+        }
+
+        &__cart2 {
+            display: flex;
         }
     }
 }
