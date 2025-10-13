@@ -1,26 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Store</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 100%;
+            margin: 0
+        }
+
+        #map {
+            width: 698px;
+            height: 585px;
+            border-radius: 25px;
+        }
+        @media screen and (max-width: 768px) {
+            #map {
+                width: 100%;
+                height: 400px;
+            }
+        }
+    </style>
   <script type="module" crossorigin src="/assets/mian-Dwk4SA4x.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/mian-BJBmEEQt.css">
 </head>
 
 <body>
-    <div class="header__menu-overlay" id="header-menu-overlay"></div>
     <header class="header">
         <div class="container">
             <div class="header__wrapper">
                 <div class="header__menu" id="header-menu">
                     <button class="header__menu-close" id="header-menu-close" aria-label="Close menu">&times;</button>
                     <ul class="header__menu-list">
-                        <li class="header__menu-item"><a href="./shop.html" class="header__menu-link">Shop</a></li>
-                        <li class="header__menu-item"><a href="#" class="header__menu-link">About us</a></li>
-                        <li class="header__menu-item"><a href="/map.html" class="header__menu-link">Contacts</a></li>
+                        <li class="header__menu-item">
+                            <a href="./shop.html" class="header__menu-link">Shop</a>
+                        </li>
+                        <li class="header__menu-item">
+                            <a href="#" class="header__menu-link">About us</a>
+                        </li>
+                        <li class="header__menu-item">
+                            <a href="map.html" class="header__menu-link">Contacts</a>
+                        </li>
                     </ul>
                     <div class="header__menu-bottom">
                         <input type="text" class="header__menu-search" placeholder="Search">
@@ -31,7 +53,6 @@
                     <span class="header__burger-line"></span>
                     <span class="header__burger-line2"></span>
                     <span class="header__burger-line"></span>
-
                 </div>
                 <nav class="header__nav">
                     <ul class="header__nav-list">
@@ -65,182 +86,29 @@
             </div>
         </div>
     </header>
-    <section class="head1">
-        <div class="head1__left">
-            <div class="head1__info">
-                <div class="head1__info-cntr">
-                    <h2 class="head1__text-header">
-                        Soft plaids for your comfort
-                    </h2>
-                    <p class="head1__text-info">Throw a blanket over your shoulders or place it on the arm of the sofa,
-                        and the atmosphere in the house will be warmer.</p>
-                </div>
-                <a href="#" class="head1__text-link">Shop now</a>
-            </div>
-        </div>
-        <div class="head1__right">
-            <img src="/assets/bg_head-a_7lZyfR.png" alt="bg_head1" class="head1__img">
-            <div class="swiper mySwiper head1__slider">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide head1__slide">
-                        <img src="/assets/head_slider-DlHhm5pZ.png" alt="slider1" class="head1__slider-img">
-                        <img src="/src/img/rename/1.png" alt="" style="display: none">
-                    </div>
-                    <div class="swiper-slide head1__slide">
-                        <img src="/assets/slider2-3g5KNzMR.png" alt="slider1" class="head1__slider-img">
-                    </div>
-                    <div class="swiper-slide head1__slide">
-                        <img src="/assets/slider3-MRdR6LD9.png" alt="slider1" class="head1__slider-img">
-                    </div>
-                </div>
-                <div class="swiper-pagination head1__pagination"></div>
-            </div>
-        </div>
-    </section>
-    <section class="popular">
+    <section class="contacts">
         <div class="container">
-            <div class="popular__wrapper">
-                <div class="imprt" id="pp-track">
-                    <!-- Slide 1 -->
-                    <div class="pp-slide">
-                        <h2 class="popular__header">Most Popular</h2>
-                        <div class="card info-cards">
-                            <a href="/card.html" class="card__link">
-                                <img class="srch" src="/assets/2-DRupJYG4.png" alt="Rovror blanket">
-                            </a>
-                        </div>
-                        <div class="meta">
-                            <h3 class="name">Gerhild</h3>
-                            <p class="size">130×170 cm</p>
-                            <p class="price">€90</p>
+            <h2 class="contacts__title">Contacts</h2>
+            <div class="contacts__wrapper">
+                <div class="contacts__left">
+                    <div class="contacts__info">
+                        <div class="contacts__info-cntr">
+                            <h4 class="contacts__info-header">WARM HEART SHOP</h4>
+                            <p class="contacts__info-text">Phone number: <span> +44 330 321 8754</span></p>
+                            <p class="contacts__info-text">Address: <span> 2A Craven Street, Northampton</span></p>
+                            <p class="contacts__info-text">Email: <span> warmheart.office@gmail.com</span></p>
                         </div>
                     </div>
-
-                    <!-- Slide 2 (center with circle background) -->
-                    <div class="pp-slide">
-                        <div class="card cards2">
-                            <a href="/card.html" class="card__link">
-                                <img class="srch" src="/assets/1-D4fWJuBW.png" alt="Rovror blanket">
-                            </a>
-                        </div>
-                        <div class="meta">
-                            <h3 class="name">Gultall</h3>
-                            <p class="size">130×170 cm</p>
-                            <p class="price">€180</p>
+                    <div class="contacts__info">
+                        <div class="contacts__info-cntr">
+                            <h4 class="contacts__info-header">WARM HEART OFFICE</h4>
+                            <p class="contacts__info-text">Phone number: <span> +44 330 456 1425</span></p>
+                            <p class="contacts__info-text">Address: <span> 70 Edith Street, Northampton</span> </p>
+                            <p class="contacts__info-text">Email: <span> warmheart.office@gmail.com</span></p>
                         </div>
                     </div>
-                    <!-- Slide 3 -->
-                    <div class="pp-slide">
-                        <div class="card info-cards3">
-                            <a href="/card.html" class="card__link">
-                                <img class="srch" src="/assets/8-WmMkaMj-.png" alt="Rovror blanket">
-                            </a>
-                        </div>
-                        <div class="meta">
-                            <h3 class="name">Rovror</h3>
-                            <p class="size">150×200 cm</p>
-                            <p class="price">€85</p>
-                        </div>
-                    </div>
-
                 </div>
-                <!-- /SLIDER TRACK -->
-
-                <!-- Controls -->
-                <div class="pp-controls">
-                    <button class="pp-arrow pp-prev" aria-label="Prev"></button>
-                    <div class="pp-dots" aria-label="Pagination"></div>
-                    <button class="pp-arrow pp-next" aria-label="Next"></button>
-                </div>
-            </div>
-        </div>
-        </div>
-    </section>
-    <section class="black">
-        <div class="container">
-            <div class="black__wrapper">
-                <div class="black__left">
-                    <h3 class="black__left-header">Create comfort in home</h3>
-                    <p class="black__left-text">A blanket is a simple and versatile thing that can make relaxing after a
-                        hard day's work much more comfortable.</p>
-                </div>
-                <div class="black__duo">
-
-                    <img src="/assets/slider2-3g5KNzMR.png" alt="" class="black__img-item">
-
-                    <div class="black__right">
-                        <div class="black__right-info">
-                            <h3 class="black__right-header">Sideneert</h3>
-
-                            <p class="black__right-text">It is made from soft New Zealand wool, which is naturally
-                                stain-repellent. <br><br>
-                                This bedspread is an easy way to freshen up your bedroom decor. Plus, it can be used as
-                                an
-                                extra blanket if you get cold.</p>
-                        </div>
-                        <a href="#" class="black__right-link"> Go to shop</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="eco">
-        <div class="comtainer">
-            <div class="eco__wrapper">
-                <div class="eco__block">
-                    <h3 class="eco__header">
-                        We use eco-friendly materials
-                    </h3>
-                    <p class="eco__text">
-                        We always care about the environment. Therefore we use only environmentally friendly and
-                        recyclable materials in our production. Our blankets help to warm up on cold evenings, and also
-                        make your home even more cozy.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="instagram">
-        <div class="container">
-            <div class="instagram__wrapper">
-                <h3 class="instagram__header">
-                    Follow us on instagram
-                </h3>
-                <div class="instagram__images">
-                    <div class="instagram__images-divan">
-                        <img src="/assets/divan-uk5xJWxH.png" alt="divan" class="instagram__divan">
-                        <a href="" class="instagram__divan-link">@warm.heart</a>
-                        <p class="instagram__divan-text">
-                            On our Instagram, we regularly share the most interesting news. We also tell you about all
-                            our new products.
-                        </p>
-                    </div>
-                    <div class="instagram__images-krovat">
-                        <img src="/assets/krovat-BvKYJKyD.png" alt="krovat" class="instagram__krovat">
-                        <a href="" class="instagram__krovat-link">@warm.heart</a>
-                    </div>
-                    <div class="instagram__images-kovor">
-                        <img src="/assets/kovor-Dqu0pXyt.png" alt="kovor" class="instagram__kovor">
-                        <a href="" class="instagram__kovor-link">@warm.heart</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="subscription">
-        <div class="container">
-            <div class="subscription__wrapper">
-                <div class="subscription__info">
-                    <h3 class="subscription__header">Get 20% off your first purchase</h3>
-                    <p class="subscription__text">Subscribe to our newsletter and get a promo code for a 20% discount!
-                        You will receive only the most important and relevant news.
-                    </p>
-                </div>
-                <form action="#" class="subscription__form">
-                    <input type="email" class="subscription__input" placeholder="Enter your email">
-                    <button type="submit" class="subscription__button">Submit</button>
-                </form>
+                <div id="map" class="contacts__map"></div>
             </div>
         </div>
     </section>
@@ -296,7 +164,14 @@
             </div>
         </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-</body>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        const map = L.map('map').setView([52.2405, -0.8995], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+        L.marker([52.2405, -0.8995]).addTo(map).bindPopup('Метка W').openPopup();
+    </script>
 
+</body>
 </html>

@@ -601,3 +601,31 @@
 .product--grid .product__button {
     display: none; // grid görünüşündə gizli qalır
 }
+
+.product__add {
+    border: none;
+    background-color: #111;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+
+.view-btn {
+  color: rgb(191, 189, 188); /* неактивный цвет */
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.view-btn.active {
+  color: rgb(44, 44, 44); /* активный цвет */
+}
+
+.view-btn svg {
+  width: 27px;
+  height: 27px;
+}

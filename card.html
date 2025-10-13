@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="header__menu-overlay" id="header-menu-overlay"></div>
+  <header class="header">
+    <div class="container">
+      <div class="header__wrapper">
+        <div class="header__menu" id="header-menu">
+          <button class="header__menu-close" id="header-menu-close" aria-label="Close menu">&times;</button>
+          <ul class="header__menu-list">
+            <li class="header__menu-item"><a href="./shop.html" class="header__menu-link">Shop</a></li>
+            <li class="header__menu-item"><a href="/index.html" class="header__menu-link">About us</a></li>
+            <li class="header__menu-item"><a href="/map.html" class="header__menu-link">Contacts</a></li>
+          </ul>
+          <div class="header__menu-bottom">
+            <input type="text" class="header__menu-search" placeholder="Search">
+            <span class="header__menu-cart">Cart (4)</span>
+          </div>
+        </div>
+        <div class="header__burger">
+          <span class="header__burger-line"></span>
+          <span class="header__burger-line2"></span>
+          <span class="header__burger-line"></span>
+
+        </div>
+        <nav class="header__nav">
+          <ul class="header__nav-list">
+            <li class="header__nav-item">
+              <a href="/shop.html" class="header__nav-link">Shop</a>
+            </li>
+            <li class="header__nav-item">
+              <a href="#" class="header__nav-link">About Us</a>
+            </li>
+            <li class="header__nav-item">
+              <a href="/map.html" class="header__nav-link">Contacts</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="header__logo">
+          <h1 class="header__logo-text">warm heart</h1>
+          <h1 class="header__logo-text header__logo-text1">WH</h1>
+        </div>
+        <div class="header__cart">
+          <div class="header__cart-link">
+            <span class="header__cart-text">Search</span>
+            <span class="header__cart-text">Cart (4)</span>
+          </div>
+        </div>
+        <div class="header__cart header__cart2">
+          <div class="header__cart-link header__cart-link2">
+            <span class="header__cart-icon"><img src="/src/icon/search.svg" alt="search"></span>
+            <span class="header__cart-icon"><img src="/src/icon/shopping-bag.svg" alt="cart"> (4)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main class="shopping">
+    <div class="container">
+      <div class="shopping__wrapper">
+        <div class="shopping__cards">
+          <h3 class="shopping__header">
+            Shopping cart
+          </h3>
+          <div class="shopping__cntr">
+            <div class="shopping__cntr-card">
+              <div class="shopping__card-item">
+                <div class="shopping__left">
+                  <div class="shopping__img">
+                    <img src="/public/rename/1.png" alt="card">
+                  </div>
+                  <div class="shopping__info">
+                    <p class="shopping__name">
+                      Ingrun
+                    </p>
+                    <p class="shopping__text">
+                      150x200 cm, beige
+                    </p>
+                  </div>
+                </div>
+                <div class="shopping__right">
+                  <div class="shopping__count">
+                    <span class="shopping__count-minus"></span>
+                    <div class="shopping__count">
+
+                    </div>
+                    <span class="shopping__count-plus"></span>
+                  </div>
+                  <div class="shopping__price">
+
+                  </div>
+
+                  <span class="shopping__cancel"></span>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+  <script type="module" src="src/js/ui.js"></script>
+  <script type="module" src="src/js/mian.js"></script>
+
+</body>
+
+</html>

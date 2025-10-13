@@ -4,8 +4,173 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 100%;
+            margin: 0
+        }
+
+        #map {
+            width: 698px;
+            height: 585px;
+            border-radius: 25px;
+        }
+        @media screen and (max-width: 768px) {
+            #map {
+                width: 100%;
+                height: 400px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    
+    <header class="header">
+        <div class="container">
+            <div class="header__wrapper">
+                <div class="header__menu" id="header-menu">
+                    <button class="header__menu-close" id="header-menu-close" aria-label="Close menu">&times;</button>
+                    <ul class="header__menu-list">
+                        <li class="header__menu-item">
+                            <a href="./shop.html" class="header__menu-link">Shop</a>
+                        </li>
+                        <li class="header__menu-item">
+                            <a href="#" class="header__menu-link">About us</a>
+                        </li>
+                        <li class="header__menu-item">
+                            <a href="map.html" class="header__menu-link">Contacts</a>
+                        </li>
+                    </ul>
+                    <div class="header__menu-bottom">
+                        <input type="text" class="header__menu-search" placeholder="Search">
+                        <span class="header__menu-cart">Cart (4)</span>
+                    </div>
+                </div>
+                <div class="header__burger">
+                    <span class="header__burger-line"></span>
+                    <span class="header__burger-line2"></span>
+                    <span class="header__burger-line"></span>
+                </div>
+                <nav class="header__nav">
+                    <ul class="header__nav-list">
+                        <li class="header__nav-item">
+                            <a href="/shop.html" class="header__nav-link">Shop</a>
+                        </li>
+                        <li class="header__nav-item">
+                            <a href="#" class="header__nav-link">About Us</a>
+                        </li>
+                        <li class="header__nav-item">
+                            <a href="/map.html" class="header__nav-link">Contacts</a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="header__logo">
+                    <h1 class="header__logo-text">warm heart</h1>
+                    <h1 class="header__logo-text header__logo-text1">WH</h1>
+                </div>
+                <div class="header__cart">
+                    <div class="header__cart-link">
+                        <span class="header__cart-text">Search</span>
+                        <span class="header__cart-text">Cart (4)</span>
+                    </div>
+                </div>
+                <div class="header__cart header__cart2">
+                    <div class="header__cart-link header__cart-link2">
+                        <span class="header__cart-icon"><img src="/src/icon/search.svg" alt="search"></span>
+                        <span class="header__cart-icon"><img src="/src/icon/shopping-bag.svg" alt="cart"> (4)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="contacts">
+        <div class="container">
+            <h2 class="contacts__title">Contacts</h2>
+            <div class="contacts__wrapper">
+                <div class="contacts__left">
+                    <div class="contacts__info">
+                        <div class="contacts__info-cntr">
+                            <h4 class="contacts__info-header">WARM HEART SHOP</h4>
+                            <p class="contacts__info-text">Phone number: <span> +44 330 321 8754</span></p>
+                            <p class="contacts__info-text">Address: <span> 2A Craven Street, Northampton</span></p>
+                            <p class="contacts__info-text">Email: <span> warmheart.office@gmail.com</span></p>
+                        </div>
+                    </div>
+                    <div class="contacts__info">
+                        <div class="contacts__info-cntr">
+                            <h4 class="contacts__info-header">WARM HEART OFFICE</h4>
+                            <p class="contacts__info-text">Phone number: <span> +44 330 456 1425</span></p>
+                            <p class="contacts__info-text">Address: <span> 70 Edith Street, Northampton</span> </p>
+                            <p class="contacts__info-text">Email: <span> warmheart.office@gmail.com</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div id="map" class="contacts__map"></div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__wrapper">
+                <div class="footer__left">
+                    <h3 class="footer__left-header">warm heart</h3>
+                    <div class="footer__left-icons">
+                        <img src="./src/img/footer/instagram-svgrepo-com.svg" alt="instagram" class="footer__insta svg">
+                        <img src="./src/img/footer/facebook-svgrepo-com.svg" alt="facebook"
+                            class="footer__facebook svg">
+                        <img src="./src/img/footer/twitter-3-svgrepo-com.svg" alt="twitter" class="footer__twitter svg">
+                    </div>
+                    <div class="footer__policy footer__policy1">
+                        <p class="footer__policy-text">
+                            © WARM HEART 2025 <br> <br> <br>
+                            Privacy policy
+                        </p>
+                    </div>
+                </div>
+                <div class="footer__list-container">
+                    <ul class="footer__info">
+                        <h3 class="footer__info-header">Info</h3>
+                        <li class="footer__info-item">About Us</li>
+                        <li class="footer__info-item">Contact</li>
+                        <li class="footer__info-item">Shop</li>
+                        <li class="footer__info-item">FAQ</li>
+                    </ul>
+                    <ul class="footer__customer">
+                        <h3 class="footer__customer-header">Customer service</h3>
+                        <li class="footer__customer-item">Delivery and pickup</li>
+                        <li class="footer__customer-item">Payment</li>
+                        <li class="footer__customer-item">Exchange and return</li>
+                        <li class="footer__customer-item">Help</li>
+                    </ul>
+                    <ul class="footer__useful">
+                        <h3 class="footer__useful-header">Customer service</h3>
+                        <li class="footer__useful-item">Suppliers</li>
+                        <li class="footer__useful-item">Press service</li>
+                        <li class="footer__useful-item">Buying guides</li>
+                        <li class="footer__useful-item">Principle of operation</li>
+                    </ul>
+                </div>
+                <div class="footer__policy footer__policy2">
+                    <p class="footer__policy-text">
+                        © WARM HEART 2025
+                    </p>
+                    <p class="footer__policy-text">
+                        Privacy policy
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script type="module" src="/src/js/mian.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        const map = L.map('map').setView([52.2405, -0.8995], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+        L.marker([52.2405, -0.8995]).addTo(map).bindPopup('Метка W').openPopup();
+    </script>
+
 </body>
 </html>

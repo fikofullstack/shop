@@ -12,8 +12,8 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         shop: "shop.html",
-        // about: "about.html",
-        // blog: "blog.html",
+        map: "map.html",
+        card: "card.html",
       },
     },
   },
